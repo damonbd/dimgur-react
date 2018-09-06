@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import logo from './images/dimgur-logo.JPG'
+
 import './App.css';
+
+import Uploader from './Components/Uploader/Uploader';
+import Modal from './Components/Modal/Modal';
 
 
 
@@ -14,48 +19,43 @@ class App extends Component {
     }
   }
 
-  testFetch() {
+  // testFetch() {
 
-    fetch("http://localhost:8080/jsontest")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-
-          //console.log(items);
-
-        },
-        (error) => {
-          this.setState({
-            //
-          });
-
-          console.log("this fail");
-
-        }
-      )
+  //   fetch("http://localhost:8080/jsontest")
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           items: result
+  //         });
+  //       },
+  //       (error) => {
+  //         console.log("this fail");
+  //       }
+  //     )
     
-  }
+  // }
 
   render() {
 
-    this.testFetch();
+    //this.testFetch();
 
     const { items } = this.state;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-          <h2> {items} </h2>
+      <div className="App backgroundPurple">
+        <header className="">
+          <img src={logo} />
+
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+      <Uploader />
+
+      <Modal />
+
       </div>
     );
   }
