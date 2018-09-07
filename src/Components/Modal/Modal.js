@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import './Components/Modal/Modal.css';
 import './Modal.css'
 
 class modal extends Component {
@@ -13,8 +12,6 @@ class modal extends Component {
 
     show = () => {
         this.setState({ isOpen: true });
-
-        console.log("btn press");
     }
 
     hide = () => {
@@ -22,42 +19,33 @@ class modal extends Component {
     }
 
     render() {
-
-
         let modal = null;
 
         if (this.state.isOpen) {
             modal = (
                 <div>
                     <div className="modal-overlay"></div>
-
                     <div className="modal">
                         <div className="modal-header">
                             header1
+                            <button onClick={this.hide} type="button" data-dismiss="modal" aria-label="Close" className="close">
+                                <span aria-hidden="true">x</span>
+                             </button>
                         </div>
-
                         <div className="modal-body">
                             body
                         </div>
                     </div>
                 </div>
-
             )
         }
 
         return (
-
-
             <div className="backgroundColor">
                 <button onClick={this.show} className="btn btn-primary"> Show Modal </button>
-
-
                 <p>modal component</p>
-
                 {modal}
-
                 <p> end </p>
-
             </div>
         );
     }
