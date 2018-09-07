@@ -7,8 +7,6 @@ import './App.css';
 import Uploader from './Components/Uploader/Uploader';
 import Modal from './Components/Modal/Modal';
 
-
-
 class App extends Component {
 
   constructor(props) {

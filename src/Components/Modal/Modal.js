@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+//import './Components/Modal/Modal.css';
+import './Modal.css'
 
 class modal extends Component {
 
@@ -31,7 +33,7 @@ class modal extends Component {
 
                     <div className="modal">
                         <div className="modal-header">
-                            header
+                            header1
                         </div>
 
                         <div className="modal-body">
