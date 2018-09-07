@@ -24,16 +24,16 @@ class modal extends Component {
         if (this.state.isOpen) {
             modal = (
                 <div>
-                    <div className="modal-overlay"></div>
+                    <div onClick={this.hide} className="modal-overlay"></div>
                     <div className="modal">
                         <div className="modal-header">
-                            header1
+                            {this.props.title}
                             <button onClick={this.hide} type="button" data-dismiss="modal" aria-label="Close" className="close">
                                 <span aria-hidden="true">x</span>
-                             </button>
+                            </button>
                         </div>
                         <div className="modal-body">
-                            body
+                            {this.props.children}
                         </div>
                     </div>
                 </div>
