@@ -9,6 +9,7 @@ class uploader extends Component {
             images: ""
         }
     }
+    
 
     handleImage = (e) => {
         fetch('http://localhost:8080/uploadImage', {
