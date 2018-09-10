@@ -12,33 +12,14 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      items: "hello"
+      toaster: {
+        isSuccess: false,
+        body: ""
+      }
     }
   }
 
-  // testFetch() {
-
-  //   fetch("http://localhost:8080/jsontest")
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           items: result
-  //         });
-  //       },
-  //       (error) => {
-  //         console.log("this fail");
-  //       }
-  //     )
-
-  // }
-
   render() {
-
-    //this.testFetch();
-
-    const { items } = this.state;
 
     return (
       <div className="App backgroundPurple">
@@ -50,7 +31,6 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <Uploader />
-
 
         <Modal title="TitleTest">
           <Uploader />
