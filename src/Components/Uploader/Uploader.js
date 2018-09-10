@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import './Uploader.css';
+import $ from 'jquery';
 
 class uploader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            images: ""
+            images: "",
+            routes: this.getRoutes()
         }
+    }
+
+    getRoutes = () => {
+        var routes = new Array();
+        var baseUrl = "http://localhost:8080";
+        routes.uploadImageUrl = baseUrl + "/uploadImage";
+        return routes;
     }
 
     triggerUpload = () => {
@@ -15,26 +24,33 @@ class uploader extends Component {
     }
 
     handleImage = (e) => {
-        fetch('http://localhost:8080/uploadImage', {
-            method: 'POST',
-            body: e.target.files[0],
-        }).then(
-           //is there .success or interro resp
-            () => {
-                //add to gallery below
-                alert("success post");
-            }
-        );
-        
+        $.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            url: this.state.routes.uploadImageUrl,
+            data: new FormData(e.target.files[0]),
+            success: this.uploadSuccess,
+            error: this.uploadError
+        });
+    }
+
+    uploadSuccess = () => {
+        //maybe modal can be modified to be used here, or just separate alerts pop up
+        alert("success")
+    }
+
+    uploadError = () => {
+        alert("error")
     }
 
     render() {
         return (
-            <div className="backgroundColor"> 
+            <div className="backgroundColor">
                 <p>uploader component class</p>
 
-                <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload"  />
-                <input onChange={this.handleImage} type="file" id="image" className="hide" name="image" accept="image/*"/>
+                <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload" />
+                <input onChange={this.handleImage} type="file" id="image" className="hide" name="image" accept="image/*" />
 
             </div>
         );
