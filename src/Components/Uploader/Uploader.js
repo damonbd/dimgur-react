@@ -11,16 +11,9 @@ class uploader extends Component {
     }
 
     handleImage = (e) => {
-        //validation
-
-        this.setState({ images: e.target.value });
-
-        var data = new FormData();
-        data.append("image", JSON.stringify(this.images));
-
-        fetch('http://localhost:8080/uploadImage/', {
+        fetch('http://localhost:8080/uploadImage', {
             method: 'POST',
-            body: data
+            body: e.target.files[0],
         }).then(
            //is there .success or interro resp
             () => {
@@ -42,9 +35,5 @@ class uploader extends Component {
         );
     }
 }
-
-// const uploader = () => {
-//     return <div>uploader component const </div> 
-// }
 
 export default uploader;
