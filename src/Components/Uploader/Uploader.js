@@ -9,7 +9,10 @@ class uploader extends Component {
             images: ""
         }
     }
-    
+
+    triggerUpload = () => {
+        document.getElementById('image').click();
+    }
 
     handleImage = (e) => {
         fetch('http://localhost:8080/uploadImage', {
@@ -30,7 +33,8 @@ class uploader extends Component {
             <div className="backgroundColor"> 
                 <p>uploader component class</p>
 
-                <input onChange={this.handleImage} value={this.state.images} type="file" name="image" accept="image/*" />
+                <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload"  />
+                <input onChange={this.handleImage} type="file" id="image" className="hide" name="image" accept="image/*"/>
 
             </div>
         );
