@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import './Uploader.css';
 
 class uploader extends Component {
