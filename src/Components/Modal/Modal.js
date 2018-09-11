@@ -4,6 +4,7 @@ import './Modal.css'
 class modal extends Component {
 
     constructor(props) {
+        console.log(props)
         super(props);
         this.state = {
             isOpen: false

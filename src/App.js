@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import logo from './images/dimgur-logo.JPG'
 
+
 import './App.css';
 
 import Uploader from './Components/Uploader/Uploader';
 import Modal from './Components/Modal/Modal';
+import Toaster from './Components/Toaster/Toaster';
 
 class App extends Component {
 
@@ -12,33 +14,30 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      items: "hello"
+
+      toasterIsVisible: false,
+      toasterIsSuccess: false,
+      toasterBody: ""
+
     }
-  }
 
-  // testFetch() {
+    this.toasterHandler = this.toasterHandler.bind(this);
+  };
 
-  //   fetch("http://localhost:8080/jsontest")
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           items: result
-  //         });
-  //       },
-  //       (error) => {
-  //         console.log("this fail");
-  //       }
-  //     )
-
-  // }
+  toasterHandler(e) {
+    e.preventDefault()
+    this.setState({
+      toasterIsVisible: true,
+      toasterIsSuccess: false,
+      toasterBody: "toaster words"
+    })
+  };
 
   render() {
 
-    //this.testFetch();
-
-    const { items } = this.state;
+    // let toaster = (
+    //   <Toaster isVisible={this.state.toasterIsVisible} />
+    // )
 
     return (
       <div className="App backgroundPurple">
@@ -49,12 +48,16 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Uploader />
+        <Uploader test="test" toasterHandler={this.toasterHandler} />
 
         <Modal title="TitleTest">
-          <Uploader />
+          <Uploader test="test" toasterHandler={this.toasterHandler} />
         </Modal>
 
+        {/* {toaster} */}
+        {this.state.toasterIsVisible ? <Toaster isSuccess={this.state.toasterIsSuccess} body={this.state.toasterBody} /> : null}
+        {/* <Toaster isVisible={this.state.toaster.isVisible} success={this.state.toaster.isSuccess} body={this.state.toaster.body} /> */}
+      
       </div>
     );
   }

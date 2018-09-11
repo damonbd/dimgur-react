@@ -1,0 +1,24 @@
+.background-color {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.background-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.background-error {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.toaster {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 400px;
+    height: 100px;
+}
