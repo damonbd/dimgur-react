@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import './Uploader.css';
 import $ from 'jquery';
-import Toaster from '../Toaster/Toaster';
 
+import './Uploader.css';
+import Toaster from '../Toaster/Toaster';
 
 class uploader extends Component {
 
     constructor(props) {
+        console.log(props);
         super(props);
+        console.log(props);
+
         this.state = {
             images: "",
-            routes: this.getRoutes(),
-            toaster: {
-                isVisible: false,
-                isSuccess: false,
-                body: ""
-            }
+            routes: this.getRoutes()
         }
     }
+
+    // toasterHandler = () => {
+    //     this.props.toasterHandler();
+    // }
 
     getRoutes = () => {
         var routes = new Array();
@@ -44,43 +46,32 @@ class uploader extends Component {
 
     uploadSuccess = () => {
         //maybe modal can be modified to be used here, or just separate alerts pop up
-        alert("success")
 
-        this.setState({
-            toaster: {
-                isVisible: true,
-                isSuccess: true,
-                body: "toaster body success"
-            }
-        });
+        // this.setState({
+        //     toaster: {
+        //         isVisible: true,
+        //         isSuccess: true,
+        //         body: "toaster body success"
+        //     }
+        // });
 
-        setTimeout(() => {
-            this.setState({
-                toaster: {
-                    isVisible: false,
-                }
-            });
-        }, 2000)
+        // setTimeout(() => {
+        //     this.setState({
+        //         toaster: {
+        //             isVisible: false,
+        //         }
+        //     });
+        // }, 2000)
     }
 
     uploadError = () => {
-        alert("error")
+        //console.log(this.props);
+        console.log(this.state);
 
-        this.setState({
-            toaster: {
-                isVisible: true,
-                isSuccess: false,
-                body: "toaster body error"
-            }
-        });
+        this.props.toasterHandler();
+        //this.state.toasterHandler();
 
-        setTimeout(() => {
-            this.setState({
-                toaster: {
-                    isVisible: false,
-                }
-            });
-        }, 2000)
+        console.log('test')
     }
 
     render() {
@@ -90,9 +81,6 @@ class uploader extends Component {
 
                 <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload" />
                 <input onChange={this.handleImage} type="file" id="image" className="hide" name="image" accept="image/*" />
-
-                {this.state.toaster.isVisible ? <Toaster success={this.state.toaster.isSuccess} body={this.state.toaster.body} /> : null}
-
             </div>
         );
     }
