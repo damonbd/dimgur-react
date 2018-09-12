@@ -14,9 +14,9 @@ class Toaster extends Component {
 
     // componentDidMount() {
     //     setTimeout(function () {
-    //         ReactDOM.unmountComponentAtNode($(".toaster"))
+    //     //ReactDOM.unmountComponentAtNode($(".toaster"))
 
-    //     }, 5000);
+    //     }, 2000);
     // }
 
     //pops

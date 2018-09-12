@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './images/dimgur-logo.JPG'
-
+import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 import './App.css';
 
@@ -14,23 +15,33 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-
-      toasterIsVisible: false,
-      toasterIsSuccess: false,
-      toasterBody: ""
-
+      toaster: {
+        isVisible: false,
+        isSuccess: false,
+        body: " "
+      }
     }
 
     this.toasterHandler = this.toasterHandler.bind(this);
   };
 
   toasterHandler(e) {
-    e.preventDefault()
+    //e.preventDefault()
     this.setState({
-      toasterIsVisible: true,
-      toasterIsSuccess: false,
-      toasterBody: "toaster words"
-    })
+      toaster: {
+        isVisible: true,
+        isSuccess: false,
+        body: "toaster"
+      }
+    });
+
+    setTimeout(() => {
+      this.setState({
+        toaster: {
+          isVisible: false
+        }
+      })
+    }, 2000)
   };
 
   render() {
@@ -54,9 +65,7 @@ class App extends Component {
           <Uploader test="test" toasterHandler={this.toasterHandler} />
         </Modal>
 
-        {/* {toaster} */}
-        {this.state.toasterIsVisible ? <Toaster isSuccess={this.state.toasterIsSuccess} body={this.state.toasterBody} /> : null}
-        {/* <Toaster isVisible={this.state.toaster.isVisible} success={this.state.toaster.isSuccess} body={this.state.toaster.body} /> */}
+        {this.state.toaster.isVisible ? <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} /> : null}
       
       </div>
     );
