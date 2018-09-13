@@ -13,19 +13,24 @@ class Toaster extends Component {
     }
 
     render() {
-
         let backgroundColor = "background-error";
         if (this.props.isSuccess) {
             backgroundColor = "background-success";
         }
 
+        let toaster = (
+            <div onClick={this.hide} className={backgroundColor + " " + "toaster"}>
+            <div className="toaster-body">
+                {this.props.body}
+                {this.props.isSuccess}
+            </div>
+        </div>
+        )
+
         return (
-                <div onClick={this.hide} className={backgroundColor + " " + "toaster"}>
-                    <div className="toaster-body">
-                        {this.props.body}
-                        {this.props.isSuccess}
-                    </div>
-                </div>
+            <div>
+                {toaster}
+            </div>
         );
     }
 }

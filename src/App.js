@@ -8,6 +8,8 @@ import './App.css';
 import Uploader from './Components/Uploader/Uploader';
 import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
+import Gallery from './Components/Gallery/Gallery';
+
 
 class App extends Component {
 
@@ -69,6 +71,8 @@ class App extends Component {
         <Modal title="TitleTest">
           <Uploader test="test" toasterHandler={this.toasterHandler} />
         </Modal>
+
+        <Gallery />
 
         {toaster}
       </div>
