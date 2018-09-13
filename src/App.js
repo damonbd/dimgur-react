@@ -26,12 +26,13 @@ class App extends Component {
     this.toasterHandler = this.toasterHandler.bind(this);
   };
 
-  toasterHandler(e) {
+  toasterHandler(isVisible, isSuccess, body) {
+
     this.setState({
       toaster: {
-        isVisible: true,
-        isSuccess: false,
-        body: "toaster"
+        isVisible: isVisible,
+        isSuccess: isSuccess,
+        body: body
       }
     });
 

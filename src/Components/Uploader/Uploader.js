@@ -7,19 +7,12 @@ import Toaster from '../Toaster/Toaster';
 class uploader extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
-        console.log(props);
-
         this.state = {
             images: "",
             routes: this.getRoutes()
         }
     }
-
-    // toasterHandler = () => {
-    //     this.props.toasterHandler();
-    // }
 
     getRoutes = () => {
         var routes = new Array();
@@ -40,38 +33,17 @@ class uploader extends Component {
             url: this.state.routes.uploadImageUrl,
             data: new FormData(e.target.files[0]),
             success: this.uploadSuccess,
-            error: this.uploadError
+            error: this.uploadSuccess
         });
     }
 
     uploadSuccess = () => {
-        //maybe modal can be modified to be used here, or just separate alerts pop up
-
-        // this.setState({
-        //     toaster: {
-        //         isVisible: true,
-        //         isSuccess: true,
-        //         body: "toaster body success"
-        //     }
-        // });
-
-        // setTimeout(() => {
-        //     this.setState({
-        //         toaster: {
-        //             isVisible: false,
-        //         }
-        //     });
-        // }, 2000)
+        this.props.toasterHandler(true, true, "Image successfully uploaded.");   
+        //add to gallery     
     }
 
     uploadError = () => {
-        //console.log(this.props);
-        console.log(this.state);
-
-        this.props.toasterHandler();
-        //this.state.toasterHandler();
-
-        console.log('test')
+        this.props.toasterHandler(true, false, "Something went wrong.");
     }
 
     render() {
