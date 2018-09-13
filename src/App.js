@@ -22,11 +22,11 @@ class App extends Component {
       }
     }
 
+    //bindings
     this.toasterHandler = this.toasterHandler.bind(this);
   };
 
   toasterHandler(e) {
-    //e.preventDefault()
     this.setState({
       toaster: {
         isVisible: true,
@@ -41,14 +41,18 @@ class App extends Component {
           isVisible: false
         }
       })
-    }, 2000)
+    }, 5000)
   };
 
   render() {
 
-    // let toaster = (
-    //   <Toaster isVisible={this.state.toasterIsVisible} />
-    // )
+    let toaster = null;
+
+    if (this.state.toaster.isVisible) {
+      toaster = (
+        <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} />
+      )
+    }
 
     return (
       <div className="App backgroundPurple">
@@ -65,8 +69,7 @@ class App extends Component {
           <Uploader test="test" toasterHandler={this.toasterHandler} />
         </Modal>
 
-        {this.state.toaster.isVisible ? <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} /> : null}
-      
+        {toaster}
       </div>
     );
   }
