@@ -1,3 +1,8 @@
+.gallery {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .gallery-background-color {
     background-color: blue;
 }

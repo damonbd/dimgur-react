@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Image from '../Image/Image';
+
+
 import './Gallery.css'
 
 class Gallery extends Component {
@@ -7,55 +10,25 @@ class Gallery extends Component {
         super(props);
     }
 
-    createGallery = () => {
-        //mock the data
-        let images = [];    
-        
-        let image = {};
-        image.url = "https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426";
-        
-        images.push(image);
-        images.push(image);
-        images.push(image);
-
-        
-
-        let gallery = [];
-
-        for (let i = 0; i < images.length; i++)
-        {
-
-        }
-
-        gallery.push(<div className="row full-width"> </div>);
-        gallery.push(<div> hello </div>)
-        //gallery.push(</div>);
-
-        return gallery;
-    }
-
     render() {
 
         let images = [];    
         
         let image = {};
-        image.url = "https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426";
+        image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
         
         images.push(image);
         images.push(image);
         images.push(image);
 
         return (
-            <div className="gallery-background-color">
-            gallery begin
-            {
-                images.map(image => (
-                    <img src = {image.url} />
-                ) )
+            <div className="gallery gallery-background-color">
+                {
+                    images.map(image => (
+                        <Image image={image} />
+                        //<img src = {image.url} />
+                ))
             }
-
-
-            gallery end
             </div>
         );
     }
