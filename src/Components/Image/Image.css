@@ -1,5 +1,8 @@
-/* .image-c {
-}; */
+.image-c {
+    /* float: left;
+    margin: 5px; */
+    margin-bottom: 20px;
+};
 
 .image-img {
     height: 100px;

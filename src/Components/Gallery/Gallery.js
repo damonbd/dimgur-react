@@ -20,6 +20,11 @@ class Gallery extends Component {
         images.push(image);
         images.push(image);
         images.push(image);
+        images.push(image);
+        images.push(image);
+        images.push(image);
+        images.push(image);
+        
 
         return (
             <div className="gallery gallery-background-color">
