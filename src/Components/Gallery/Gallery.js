@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Image from '../Image/Image';
 
+import Image from '../Image/Image';
 
 import './Gallery.css'
 
@@ -16,20 +16,14 @@ class Gallery extends Component {
 
     componentDidMount() {
         this.createImageArray();
-      }
+    }
 
     createImageArray() {
-        let images = [];    
-        
+        let images = [];
+
         let image = {};
         image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
-        
-        images.push(image);
-        images.push(image);
-        images.push(image);
-        images.push(image);
-        images.push(image);
-        images.push(image);
+
         images.push(image);
 
         this.setState({
@@ -40,32 +34,25 @@ class Gallery extends Component {
     componentWillReceiveProps(nextProps) {
         // You don't have to do this check first, but it can help prevent an unneeded render
         if (nextProps.newImage !== this.state.newImage) {
-          this.setState({ newImage: nextProps.newImage });
+            this.setState({ newImage: nextProps.newImage });
         }
 
         if (this.state.newImage != " ") {
-            var reader = new FileReader();
-            let newImage = new Object();
-            newImage.url = this.state.newImage;
-
-            this.state.images.push(newImage);
             this.setState({
-                images: this.state.images
+                images: [...this.state.images, this.state.images[0]]
+                //images: [...this.state.images, this.state.newImage]
             });
-            console.log("pushed");
-            console.log(this.state.images);
         }
-      }
+    }
 
     render() {
+        let imageList = this.state.images.map(image => (
+            <Image image={image} />
+        ));
+
         return (
             <div className="gallery gallery-background-color">
-                {
-                    this.state.images.map(image => (
-                        <Image image={image} />
-                        //<img src = {image.url} />
-                ))
-            }
+                {imageList}
             </div>
         );
     }

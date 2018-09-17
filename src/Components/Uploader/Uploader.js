@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-import './Uploader.css';
 import Toaster from '../Toaster/Toaster';
+
+import './Uploader.css';
 
 class uploader extends Component {
 
@@ -38,10 +39,10 @@ class uploader extends Component {
         });
     }
 
-    //takes a url returned by handleImage, sets state, notifies toaster and gallery
+    //takes an Image oject returned by handleImage, sets state, notifies toaster and gallery
     uploadSuccess = () => {
         // this.setState({
-        //     newImage: //returned imageURL
+        //     newImage: //returned Image obj
         // });
 
         this.props.toasterHandler(true, true, "Image successfully uploaded.");  

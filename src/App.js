@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import logo from './images/dimgur-logo.JPG'
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 import './App.css';
+import logo from './images/dimgur-logo.JPG'
 
-import Uploader from './Components/Uploader/Uploader';
+import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
-import Gallery from './Components/Gallery/Gallery';
-
+import Uploader from './Components/Uploader/Uploader';
 
 class App extends Component {
 
@@ -27,13 +25,11 @@ class App extends Component {
       }
     }
 
-    //bindings
     this.toasterHandler = this.toasterHandler.bind(this);
     this.galleryHandler = this.galleryHandler.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
-
     this.setState({
       toaster: {
         isVisible: isVisible,
@@ -55,7 +51,7 @@ class App extends Component {
     this.setState({
       uploader: {
         newImage: newImage
-      }        
+      }
     })
   }
 

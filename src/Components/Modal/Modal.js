@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './Modal.css'
 
 class modal extends Component {
@@ -43,9 +44,7 @@ class modal extends Component {
         return (
             <div className="backgroundColor">
                 <button onClick={this.show} className="btn btn-primary"> Show Modal </button>
-                <p>modal component</p>
                 {modal}
-                <p> end </p>
             </div>
         );
     }
