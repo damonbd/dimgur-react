@@ -1,15 +1,10 @@
-.background-color {
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-}
-
-.background-success {
+.toaster-background-success {
     color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
 
-.background-error {
+.toaster-background-error {
     color: #fff;
     background-color: #d9534f;
     border-color: #d43f3a;

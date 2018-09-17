@@ -13,9 +13,9 @@ class Toaster extends Component {
     }
 
     render() {
-        let backgroundColor = "background-error";
+        let backgroundColor = "toaster-background-error";
         if (this.props.isSuccess) {
-            backgroundColor = "background-success";
+            backgroundColor = "toaster-background-success";
         }
 
         let toaster = (

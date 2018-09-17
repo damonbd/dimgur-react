@@ -10,8 +10,6 @@ class uploader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: " ",
-            images: "",
             routes: this.getRoutes()
         }
     }
@@ -56,11 +54,11 @@ class uploader extends Component {
 
     render() {
         return (
-            <div className="backgroundColor">
+            <div className="uploader-backgroundColor">
                 <p>uploader component class</p>
 
                 <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload" />
-                <input onChange={this.handleImage} type="file" id="image" className="hide" name="image" accept="image/*" />
+                <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
             </div>
         );
     }
