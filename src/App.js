@@ -21,11 +21,15 @@ class App extends Component {
         isVisible: false,
         isSuccess: false,
         body: " "
+      },
+      uploader: {
+        newImage: " "
       }
     }
 
     //bindings
     this.toasterHandler = this.toasterHandler.bind(this);
+    this.galleryHandler = this.galleryHandler.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
@@ -47,6 +51,14 @@ class App extends Component {
     }, 5000)
   };
 
+  galleryHandler(newImage) {
+    this.setState({
+      uploader: {
+        newImage: newImage
+      }        
+    })
+  }
+
   render() {
 
     let toaster = null;
@@ -66,13 +78,13 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Uploader test="test" toasterHandler={this.toasterHandler} />
+        <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
 
         <Modal title="TitleTest">
-          <Uploader test="test" toasterHandler={this.toasterHandler} />
+          {/* <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} /> */}
         </Modal>
 
-        <Gallery />
+        <Gallery newImage={this.state.uploader.newImage} />
 
         {toaster}
       </div>

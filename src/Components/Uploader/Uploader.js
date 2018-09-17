@@ -9,6 +9,7 @@ class uploader extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            image: " ",
             images: "",
             routes: this.getRoutes()
         }
@@ -37,8 +38,14 @@ class uploader extends Component {
         });
     }
 
+    //takes a url returned by handleImage, sets state, notifies toaster and gallery
     uploadSuccess = () => {
-        this.props.toasterHandler(true, true, "Image successfully uploaded.");   
+        // this.setState({
+        //     newImage: //returned imageURL
+        // });
+
+        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
+        this.props.galleryHandler(this.state.newImage);
         //add to gallery     
     }
 
