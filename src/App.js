@@ -77,7 +77,7 @@ class App extends Component {
         <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
 
         <Modal title="TitleTest">
-          {/* <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} /> */}
+          <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
         </Modal>
 
         <Gallery newImage={this.state.uploader.newImage} />
