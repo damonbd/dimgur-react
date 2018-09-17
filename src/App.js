@@ -74,10 +74,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+        <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
 
         <Modal title="TitleTest">
-          <Uploader test="test" toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
         </Modal>
 
         <Gallery newImage={this.state.uploader.newImage} />
