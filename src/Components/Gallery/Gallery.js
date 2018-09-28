@@ -23,7 +23,6 @@ class Gallery extends Component {
 
         let image = {};
         image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
-        image.id = 1;
 
         images.push(image);
 
@@ -34,21 +33,22 @@ class Gallery extends Component {
 
     componentWillReceiveProps(nextProps) {
         // You don't have to do this check first, but it can help prevent an unneeded render
-        if (nextProps.newImage !== this.state.newImage) {
-            this.setState({ newImage: nextProps.newImage });
-        }
+        if (nextProps.newImage != this.state.newImage) {
 
-        if (this.state.newImage != " ") {
+            //store the image to prevent uploading the same image twice in a row
+            this.setState({ newImage: nextProps.newImage });
+
             this.setState({
-                images: [...this.state.images, this.state.images[0]]
-                //images: [...this.state.images, this.state.newImage]
+                images: [...this.state.images, nextProps.newImage]
             });
         }
+
+
     }
 
     render() {
-        let imageList = this.state.images.map(image => (
-            <Image key={image.id} image={image} />
+        let imageList = this.state.images.map((image, index) => (
+            <Image key={index} image={image} />
         ));
 
         return (

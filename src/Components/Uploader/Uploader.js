@@ -39,13 +39,17 @@ class uploader extends Component {
 
     //takes an Image oject returned by handleImage, sets state, notifies toaster and gallery
     uploadSuccess = () => {
-        // this.setState({
-        //     newImage: //returned Image obj
-        // });
 
-        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
+        //dummy data
+        let image = {};
+        image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
+
+        this.setState({
+            newImage: image
+        });
+
         this.props.galleryHandler(this.state.newImage);
-        //add to gallery     
+        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
     }
 
     uploadError = () => {

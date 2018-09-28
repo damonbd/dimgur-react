@@ -8,10 +8,6 @@ class Toaster extends Component {
         super(props);
     }
 
-    hide = () => {
-        this.setState({ isVisible: false });
-    }
-
     render() {
         let backgroundColor = "toaster-background-error";
         if (this.props.isSuccess) {
@@ -19,7 +15,7 @@ class Toaster extends Component {
         }
 
         let toaster = (
-            <div onClick={this.hide} className={backgroundColor + " " + "toaster"}>
+            <div onClick={this.props.hide} className={backgroundColor + " " + "toaster"}>
             <div className="toaster-body">
                 {this.props.body}
                 {this.props.isSuccess}

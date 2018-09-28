@@ -27,6 +27,7 @@ class App extends Component {
 
     this.toasterHandler = this.toasterHandler.bind(this);
     this.galleryHandler = this.galleryHandler.bind(this);
+    this.hideToaster = this.hideToaster.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
@@ -47,6 +48,14 @@ class App extends Component {
     }, 5000)
   };
 
+  hideToaster() {
+    this.setState({
+      toaster: {
+        isVisible: false
+      }
+    });
+  }
+
   galleryHandler(newImage) {
     this.setState({
       uploader: {
@@ -61,7 +70,7 @@ class App extends Component {
 
     if (this.state.toaster.isVisible) {
       toaster = (
-        <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} />
+        <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} hide={this.hideToaster} />
       )
     }
 
