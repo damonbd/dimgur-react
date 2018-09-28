@@ -3,32 +3,19 @@ import $ from 'jquery';
 
 import './Toaster.css'
 
-class Toaster extends Component {
-    constructor(props) {
-        super(props);
+const Toaster = (props) => {
+    let backgroundColor = "toaster-background-error";
+    if (props.isSuccess) {
+        backgroundColor = "toaster-background-success";
     }
 
-    render() {
-        let backgroundColor = "toaster-background-error";
-        if (this.props.isSuccess) {
-            backgroundColor = "toaster-background-success";
-        }
-
-        let toaster = (
-            <div onClick={this.props.hide} className={backgroundColor + " " + "toaster"}>
+    return (
+        <div onClick={props.hide} className={backgroundColor + " " + "toaster"}>
             <div className="toaster-body">
-                {this.props.body}
-                {this.props.isSuccess}
+                {props.body}
             </div>
         </div>
-        )
-
-        return (
-            <div>
-                {toaster}
-            </div>
-        );
-    }
-}
+    )
+};
 
 export default Toaster;

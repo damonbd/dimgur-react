@@ -42,8 +42,6 @@ class Gallery extends Component {
                 images: [...this.state.images, nextProps.newImage]
             });
         }
-
-
     }
 
     render() {
