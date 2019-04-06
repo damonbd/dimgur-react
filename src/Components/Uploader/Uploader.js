@@ -26,26 +26,33 @@ class uploader extends Component {
     }
 
     handleImage = (e) => {
-        $.ajax({
-            type: "POST",
-            processData: false,
-            contentType: false,
-            url: this.state.routes.uploadImageUrl,
-            data: new FormData(e.target.files[0]),
-            success: this.uploadSuccess,
-            error: this.uploadSuccess
-        });
+        // mock call
+        this.uploadSuccess(e.target.files[0]);
+  
+        // $.ajax({
+        //     type: "POST",
+        //     processData: false,
+        //     contentType: false,
+        //     url: this.state.routes.uploadImageUrl,
+        //     data: new FormData(e.target.files[0]),
+        //     success: this.uploadSuccess(e.target.files[0]),
+        //     error: this.uploadSuccess
+        // });
+
+        //reset input
+        e.target.value = null;
     }
 
     //takes an Image oject returned by handleImage, sets state, notifies toaster and gallery
-    uploadSuccess = () => {
-        // this.setState({
-        //     newImage: //returned Image obj
-        // });
+    uploadSuccess = (newImage) => {
+        console.log(newImage)
+        if (newImage.type == null) {
+            return;
+        }
 
-        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
-        this.props.galleryHandler(this.state.newImage);
         //add to gallery     
+        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
+        this.props.galleryHandler(newImage);
     }
 
     uploadError = () => {

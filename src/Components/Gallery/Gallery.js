@@ -33,13 +33,14 @@ class Gallery extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        //console.log(nextProps)
+        //debugger;
         // You don't have to do this check first, but it can help prevent an unneeded render
-        if (nextProps.newImage !== this.state.newImage) {
+        if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined ) {
             this.setState({ newImage: nextProps.newImage });
-        }
 
-        if (this.state.newImage != " ") {
             this.setState({
+                //images: [...x]
                 images: [...this.state.images, this.state.images[0]]
                 //images: [...this.state.images, this.state.newImage]
             });
@@ -47,8 +48,8 @@ class Gallery extends Component {
     }
 
     render() {
-        let imageList = this.state.images.map(image => (
-            <Image key={image.id} image={image} />
+        let imageList = this.state.images.map((image, i) => (
+            <Image key={i} image={image} />
         ));
 
         return (
