@@ -100,9 +100,9 @@ class App extends Component {
         <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
 
         <Modal title="TitleTest" isOpen={this.state.modal.isOpen} >
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler ={this.modalHandler} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
         </Modal>
-        
+
         <ImageModal title="ImageTest" isOpen={this.state.modal.isOpen} >
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>

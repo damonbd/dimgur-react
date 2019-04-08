@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Image from '../Image/Image';
+import ImageContainer from '../ImageContainer/ImageContainer';
+
 
 import './Gallery.css'
 
@@ -48,7 +50,7 @@ class Gallery extends Component {
 
     render() {
         let imageList = this.state.images.map((image, i) => (
-            <Image key={i} image={image} />
+            <ImageContainer key={i} image={image} />
         ));
 
         return (
