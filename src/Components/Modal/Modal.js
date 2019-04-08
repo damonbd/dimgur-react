@@ -16,7 +16,8 @@ class Modal extends Component {
     }
 
     hide = () => {
-        this.setState({ isOpen: false });
+        // app.js knows which handler, so we know which modal to close
+        this.props.handler(false);
     }
 
     componentWillReceiveProps(nextProps) {

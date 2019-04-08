@@ -109,7 +109,7 @@ class App extends Component {
             <img src={logo} />
 
             <div style={{ float: "right" }}>
-              <Modal title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
+              <Modal handler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
                 <SignUp toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
               </Modal>
             </div>
