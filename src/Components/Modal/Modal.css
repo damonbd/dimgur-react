@@ -18,7 +18,8 @@
 
 .modal {
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.22), 0 17px 20px 0 rgba(0, 0, 0, 0.12);
-    background-color: white;
+    color: #f2f2f2;
+    background-color: #2C2F34;
     left: 33%;
     max-height: calc(100% - 10em);
     overflow-y: auto;
@@ -29,7 +30,8 @@
     border-radius:4px;
     display: block;
     height: fit-content;
-    width: 33%;
+    max-width: 33%;
+    padding-bottom:10px;
 }
 
 .modal .title {

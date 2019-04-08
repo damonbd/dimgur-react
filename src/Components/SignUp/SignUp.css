@@ -1,0 +1,20 @@
+.signUp-input {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #191919;
+    color: #f2f2f2;
+    border: 1px solid transparent;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.signUp-form {
+    width: 50%;
+    display: inline-block;
+}
+
+.signUp-submit {
+    float: right;
+}

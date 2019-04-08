@@ -36,7 +36,7 @@ class Modal extends Component {
                         <div className="modal-header">
                             {this.props.title}
                             <button onClick={this.hide} type="button" data-dismiss="modal" aria-label="Close" className="close">
-                                <span aria-hidden="true">x</span>
+                                <span style={{color: "#f2f2f2"}} aria-hidden="true">x</span>
                             </button>
                         </div>
                         <div className="modal-body">
@@ -48,7 +48,7 @@ class Modal extends Component {
         }
 
         return (
-            <div className="backgroundColor">
+            <div className="">
                 <button onClick={this.show} className="btn btn-primary"> {this.props.btnText != null ? this.props.btnText : "Show Modal"} </button>
                 {modal}
             </div>

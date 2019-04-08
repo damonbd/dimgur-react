@@ -9,6 +9,7 @@ import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
 import ImageModal from './Components/ImageModal/ImageModal';
+import SignUp from './Components/SignUp/SignUp';
 
 class App extends Component {
 
@@ -96,7 +97,7 @@ class App extends Component {
 
             <div style={{ float: "right" }}>
               <Modal title="TitleTest" btnText="Sign Up" isOpen={this.state.modal.isOpen} >
-                <p> sign up component </p>
+                <SignUp />
               </Modal>
             </div>
 
