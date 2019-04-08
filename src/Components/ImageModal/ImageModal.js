@@ -21,7 +21,6 @@ class ImageModal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         if (nextProps != null && nextProps.isOpen != null) {
             this.setState({ isOpen: nextProps.isOpen });
         }

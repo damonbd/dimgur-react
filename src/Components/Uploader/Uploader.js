@@ -52,7 +52,7 @@ class uploader extends Component {
         //add to gallery     
         this.props.toasterHandler(true, true, "Image successfully uploaded.");  
         this.props.galleryHandler(newImage);
-        this.props.modalHandler();
+        this.props.modalHandler(false);
     }
 
     uploadError = () => {

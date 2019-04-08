@@ -21,7 +21,7 @@ class Modal extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps != null) {
-        this.setState({ isOpen: nextProps.isOpen });
+            this.setState({ isOpen: nextProps.isOpen });
         }
     }
 
@@ -36,7 +36,7 @@ class Modal extends Component {
                         <div className="modal-header">
                             {this.props.title}
                             <button onClick={this.hide} type="button" data-dismiss="modal" aria-label="Close" className="close">
-                                <span style={{color: "#f2f2f2"}} aria-hidden="true">x</span>
+                                <span style={{ color: "#f2f2f2" }} aria-hidden="true">x</span>
                             </button>
                         </div>
                         <div className="modal-body">

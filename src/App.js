@@ -27,6 +27,12 @@ class App extends Component {
       },
       modal: {
         isOpen: false
+      },
+      modalImageTest: {
+        isOpen: false
+      },
+      signUp: {
+        modalIsOpen: false
       }
     }
 
@@ -34,6 +40,7 @@ class App extends Component {
     this.galleryHandler = this.galleryHandler.bind(this);
     this.hideToaster = this.hideToaster.bind(this);
     this.modalHandler = this.modalHandler.bind(this);
+    this.signUpModalHandler = this.signUpModalHandler.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
@@ -70,10 +77,18 @@ class App extends Component {
     })
   }
 
-  modalHandler() {
+  modalHandler(isOpen) {
     this.setState({
       modal: {
-        isOpen: false
+        isOpen: isOpen != null ? isOpen : false
+      }
+    })
+  }
+
+  signUpModalHandler(isOpen) {
+    this.setState({
+      signUp: {
+        modalIsOpen: isOpen != null ? isOpen: false
       }
     })
   }
@@ -94,8 +109,8 @@ class App extends Component {
             <img src={logo} />
 
             <div style={{ float: "right" }}>
-              <Modal title="TitleTest" btnText="Sign Up" isOpen={this.state.modal.isOpen} >
-                <SignUp toasterHandler={this.toasterHandler} />
+              <Modal title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
+                <SignUp toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
               </Modal>
             </div>
           </div>
@@ -110,7 +125,7 @@ class App extends Component {
           <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
         </Modal>
 
-        <ImageModal title="ImageTest" isOpen={this.state.modal.isOpen} >
+        <ImageModal title="ImageTest" isOpen={this.state.modalImageTest.isOpen} >
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>
 
