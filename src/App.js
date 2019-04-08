@@ -90,8 +90,19 @@ class App extends Component {
 
     return (
       <div className="App background-color">
-        <header className="">
-          <img src={logo} />
+        <header className="header">
+          <div>
+            <img src={logo} />
+
+            <div style={{ float: "right" }}>
+              <Modal title="TitleTest" btnText="Sign Up" isOpen={this.state.modal.isOpen} >
+                <p> sign up component </p>
+              </Modal>
+            </div>
+
+
+
+          </div>
 
         </header>
         <p className="App-intro">

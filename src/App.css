@@ -31,3 +31,8 @@
 .background-color {
   background-color: #2e3035;
 }
+
+.header {
+  padding-top: 10px;
+  padding-right: 10px;
+}

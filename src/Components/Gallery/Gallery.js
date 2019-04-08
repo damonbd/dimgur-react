@@ -42,7 +42,7 @@ class Gallery extends Component {
 
             this.setState({
                 //images: [...x]
-                images: [...this.state.images, this.state.images[0]]
+                images: [this.state.images[0], ...this.state.images]
                 //images: [...this.state.images, this.state.newImage]
             });
         }

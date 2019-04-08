@@ -49,7 +49,7 @@ class Modal extends Component {
 
         return (
             <div className="backgroundColor">
-                <button onClick={this.show} className="btn btn-primary"> Show Modal </button>
+                <button onClick={this.show} className="btn btn-primary"> {this.props.btnText} </button>
                 {modal}
             </div>
         );
