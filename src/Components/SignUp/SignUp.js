@@ -33,11 +33,14 @@ class SignUp extends Component {
     }
 
     signUpClick = () => {
-        // fake an ajax call
+        // imaginary ajax call
         let isValid = this.validateForm();
 
         if (isValid) {
             this.props.toasterHandler(true, true, "You have signed up!");
+
+            // rather than doing real auth, just set the user to a property
+            this.props.signUpHandler(this.state.username);
         }
         else {
             this.props.toasterHandler(true, false, "Form Error!");

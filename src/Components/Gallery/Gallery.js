@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Image from '../Image/Image';
 import ImageContainer from '../ImageContainer/ImageContainer';
 
-
 import './Gallery.css'
 
 class Gallery extends Component {
@@ -34,17 +33,21 @@ class Gallery extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //console.log(nextProps)
-        //debugger;
         // You don't have to do this check first, but it can help prevent an unneeded render
-        if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined ) {
-            this.setState({ newImage: nextProps.newImage });
+        if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined) {
 
-            this.setState({
-                //images: [...x]
-                images: [this.state.images[0], ...this.state.images]
-                //images: [...this.state.images, this.state.newImage]
-            });
+            let image = nextProps.newImage;
+            let reader = new FileReader();
+            let url = reader.readAsDataURL(image);
+
+            reader.onloadend = (e) => {
+                image.url = reader.result;
+                console.log(reader)
+                this.setState({
+                    newImage: image,
+                    images: [image, ...this.state.images]
+                });
+            }
         }
     }
 

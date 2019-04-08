@@ -33,6 +33,9 @@ class App extends Component {
       },
       signUp: {
         modalIsOpen: false
+      },
+      user: {
+        username: ""
       }
     }
 
@@ -41,6 +44,7 @@ class App extends Component {
     this.hideToaster = this.hideToaster.bind(this);
     this.modalHandler = this.modalHandler.bind(this);
     this.signUpModalHandler = this.signUpModalHandler.bind(this);
+    this.signUpHandler = this.signUpHandler.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
@@ -70,6 +74,10 @@ class App extends Component {
   }
 
   galleryHandler(newImage) {
+
+    // mock username here, would be returned from server with username already
+    newImage.username = this.state.user.username;
+
     this.setState({
       uploader: {
         newImage: newImage
@@ -88,9 +96,20 @@ class App extends Component {
   signUpModalHandler(isOpen) {
     this.setState({
       signUp: {
-        modalIsOpen: isOpen != null ? isOpen: false
+        modalIsOpen: isOpen != null ? isOpen : false
       }
     })
+  }
+
+  signUpHandler(username) {
+    if (username != null) {
+      this.setState({
+        user: {
+          username: username
+        }
+      })
+    }
+
   }
 
   render() {
@@ -110,7 +129,7 @@ class App extends Component {
 
             <div style={{ float: "right" }}>
               <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
-                <SignUp toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
+                <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
               </Modal>
             </div>
           </div>
@@ -129,7 +148,7 @@ class App extends Component {
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>
 
-        <Gallery newImage={this.state.uploader.newImage} />
+        <Gallery newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         {toaster}
       </div>
