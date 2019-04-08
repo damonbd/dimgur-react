@@ -45,7 +45,6 @@ class uploader extends Component {
 
     //takes an Image oject returned by handleImage, sets state, notifies toaster and gallery
     uploadSuccess = (newImage) => {
-        console.log(newImage)
         if (newImage.type == null) {
             return;
         }
@@ -53,6 +52,7 @@ class uploader extends Component {
         //add to gallery     
         this.props.toasterHandler(true, true, "Image successfully uploaded.");  
         this.props.galleryHandler(newImage);
+        this.props.modalHandler();
     }
 
     uploadError = () => {

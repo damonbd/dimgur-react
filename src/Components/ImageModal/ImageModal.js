@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
-import './Modal.css'
+import '../Modal/Modal.css'
 
-class Modal extends Component {
+class ImageModal extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            image: props.children.props.src
         }
     }
 
@@ -20,8 +21,13 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps != null) {
-        this.setState({ isOpen: nextProps.isOpen });
+        console.log(nextProps)
+        if (nextProps != null && nextProps.isOpen != null) {
+            this.setState({ isOpen: nextProps.isOpen });
+        }
+
+        if (nextProps != null && nextProps.image != null) {
+            this.setStrate({ image: nextProps.image});
         }
     }
 
@@ -49,11 +55,11 @@ class Modal extends Component {
 
         return (
             <div className="backgroundColor">
-                <button onClick={this.show} className="btn btn-primary"> Show Modal </button>
+                <img onClick={this.show} src={this.state.image} className=""></img>
                 {modal}
             </div>
         );
     }
 }
 
-export default Modal;
+export default ImageModal;

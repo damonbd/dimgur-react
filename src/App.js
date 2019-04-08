@@ -8,6 +8,7 @@ import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
+import ImageModal from './Components/ImageModal/ImageModal';
 
 class App extends Component {
 
@@ -22,12 +23,16 @@ class App extends Component {
       },
       uploader: {
         newImage: " "
+      },
+      modal: {
+        isOpen: false
       }
     }
 
     this.toasterHandler = this.toasterHandler.bind(this);
     this.galleryHandler = this.galleryHandler.bind(this);
     this.hideToaster = this.hideToaster.bind(this);
+    this.modalHandler = this.modalHandler.bind(this);
   };
 
   toasterHandler(isVisible, isSuccess, body) {
@@ -64,6 +69,15 @@ class App extends Component {
     })
   }
 
+  modalHandler() {
+    console.log("modal handler")
+    this.setState({
+      modal: {
+        isOpen: false
+      }
+    })
+  }
+
   render() {
 
     let toaster = null;
@@ -75,7 +89,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App backgroundPurple">
+      <div className="App background-color">
         <header className="">
           <img src={logo} />
 
@@ -83,11 +97,15 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+        <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
 
-        <Modal title="TitleTest">
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+        <Modal title="TitleTest" isOpen={this.state.modal.isOpen} >
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler ={this.modalHandler} />
         </Modal>
+        
+        <ImageModal title="ImageTest" isOpen={this.state.modal.isOpen} >
+          <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
+        </ImageModal>
 
         <Gallery newImage={this.state.uploader.newImage} />
 

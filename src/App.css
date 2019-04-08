@@ -9,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #2e3035;
   height: 150px;
   padding: 20px;
   color: white;
@@ -28,6 +28,6 @@
   to { transform: rotate(360deg); }
 }
 
-.backgroundPurple {
-  background-color: mediumpurple;
+.background-color {
+  background-color: #2e3035;
 }
