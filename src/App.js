@@ -71,7 +71,6 @@ class App extends Component {
   }
 
   modalHandler() {
-    console.log("modal handler")
     this.setState({
       modal: {
         isOpen: false
@@ -80,7 +79,6 @@ class App extends Component {
   }
 
   render() {
-
     let toaster = null;
 
     if (this.state.toaster.isVisible) {
@@ -97,12 +95,9 @@ class App extends Component {
 
             <div style={{ float: "right" }}>
               <Modal title="TitleTest" btnText="Sign Up" isOpen={this.state.modal.isOpen} >
-                <SignUp />
+                <SignUp toasterHandler={this.toasterHandler} />
               </Modal>
             </div>
-
-
-
           </div>
 
         </header>
