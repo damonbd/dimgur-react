@@ -12,12 +12,13 @@ class Modal extends Component {
     }
 
     show = () => {
-        this.setState({ isOpen: true });
+        // app.js knows which handler, so we know which modal to close
+        this.props.visibilityHandler(true);
     }
 
     hide = () => {
         // app.js knows which handler, so we know which modal to close
-        this.props.handler(false);
+        this.props.visibilityHandler(false);
     }
 
     componentWillReceiveProps(nextProps) {

@@ -109,7 +109,7 @@ class App extends Component {
             <img src={logo} />
 
             <div style={{ float: "right" }}>
-              <Modal handler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
+              <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
                 <SignUp toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
               </Modal>
             </div>
@@ -121,7 +121,7 @@ class App extends Component {
         </p>
         <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
 
-        <Modal title="TitleTest" isOpen={this.state.modal.isOpen} >
+        <Modal visibilityHandler={this.modalHandler} title="TitleTest" isOpen={this.state.modal.isOpen} >
           <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
         </Modal>
 
