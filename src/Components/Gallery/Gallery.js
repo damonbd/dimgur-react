@@ -5,6 +5,14 @@ import ImageContainer from '../ImageContainer/ImageContainer';
 
 import './Gallery.css'
 
+// dummy media
+import image1 from '../../images/test-media/image1.png';
+import image2 from '../../images/test-media/image2.jpg';
+import image3 from '../../images/test-media/image3.jpg';
+import image4 from '../../images/test-media/image4.jpeg';
+import image5 from '../../images/test-media/image5.jpg';
+import image6 from '../../images/test-media/image6.jpg';
+
 class Gallery extends Component {
 
     constructor(props) {
@@ -22,11 +30,15 @@ class Gallery extends Component {
     createImageArray() {
         let images = [];
 
-        let image = {};
-        image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
-        image.username = "Bobby"
+        let imagesToFormat = [image1, image2, image3, image4, image5, image6];
+        imagesToFormat.forEach(i => {
+            let image = {};
+            image.url = i;
+            images.push(image);
+        });
 
-        images.push(image);
+        images[0].username = "Bobby";
+        images[0].username = "Robert";
 
         this.setState({
             images: images
