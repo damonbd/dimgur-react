@@ -56,17 +56,12 @@ class App extends Component {
   }
 
   stickyHeader() {
-    // Get the header
-    var header = document.getElementById("header");
-
-    // Get the offset position of the navbar
-    var sticky = header.offsetTop;
-
-    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    if (window.pageYOffset > sticky) {
-      header.classList.add("header-sticky");
+    if ($(this).scrollTop() > 175) {
+      // animate fixed div to small size:
+      $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
     } else {
-      header.classList.remove("header-sticky");
+      //  animate fixed div to original size
+      $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
     }
   }
 
