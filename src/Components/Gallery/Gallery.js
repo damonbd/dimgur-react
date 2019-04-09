@@ -24,6 +24,7 @@ class Gallery extends Component {
 
         let image = {};
         image.url = "https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png";
+        image.username = "Bobby"
 
         images.push(image);
 

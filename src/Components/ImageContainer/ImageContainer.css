@@ -1,3 +1,10 @@
 .image-container {
     margin: 10px;
 }
+
+.image-info {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+}
