@@ -47,6 +47,29 @@ class App extends Component {
     this.signUpHandler = this.signUpHandler.bind(this);
   };
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.stickyHeader)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.stickyHeader);
+  }
+
+  stickyHeader() {
+    // Get the header
+    var header = document.getElementById("header");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    if (window.pageYOffset > sticky) {
+      header.classList.add("header-sticky");
+    } else {
+      header.classList.remove("header-sticky");
+    }
+  }
+
   toasterHandler(isVisible, isSuccess, body) {
     this.setState({
       toaster: {
