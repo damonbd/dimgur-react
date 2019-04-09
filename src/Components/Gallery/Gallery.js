@@ -70,7 +70,7 @@ class Gallery extends Component {
         ));
 
         return (
-            <div className="gallery gallery-background-color">
+            <div className="gallery">
                 {imageList}
             </div>
         );

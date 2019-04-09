@@ -28,7 +28,7 @@ class uploader extends Component {
     handleImage = (e) => {
         // mock call
         this.uploadSuccess(e.target.files[0]);
-  
+
         // $.ajax({
         //     type: "POST",
         //     processData: false,
@@ -50,7 +50,7 @@ class uploader extends Component {
         }
 
         //add to gallery     
-        this.props.toasterHandler(true, true, "Image successfully uploaded.");  
+        this.props.toasterHandler(true, true, "Image successfully uploaded.");
         this.props.galleryHandler(newImage);
         this.props.modalHandler(false);
     }
@@ -61,9 +61,7 @@ class uploader extends Component {
 
     render() {
         return (
-            <div className="uploader-backgroundColor">
-                <p>uploader component class</p>
-
+            <div >
                 <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Upload" />
                 <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
             </div>
