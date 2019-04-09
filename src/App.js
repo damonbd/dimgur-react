@@ -146,7 +146,7 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <header className="header">
+        <header id="header" className="header">
           <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
 
           <img style={{ height: "fit-content" }} src={logo} />
