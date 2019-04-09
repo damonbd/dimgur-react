@@ -12,8 +12,8 @@ class ImageContainer extends Component {
                 <Image image={this.props.image} />
                 <div style={{ backgroundColor: "#56585f" }}>
                     <div className="image-info">
-                        <p className="image-username">{this.props.image.username != "" ? this.props.image.username : "Anonymous"}</p>
-                        <p className="image-description">Image Description</p>
+                        <p className="image-font image-username">{this.props.image.username != "" ? this.props.image.username : "Anonymous"}</p>
+                        <p className="image-font image-description">Image Description</p>
                     </div>
                 </div>
             </div>
