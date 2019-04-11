@@ -87,17 +87,7 @@ class App extends Component {
 
   updateGallery() {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      let images = [];
-
-      let imagesToFormat = [image6, image5, image4, image3, image2, image1];
-      imagesToFormat.forEach(i => {
-        let image = {};
-        image.url = i;
-        images.push(image);
-      });
-
-      images[0].username = "Bobby";
-      images[0].username = "Robert";
+      let images = this.initImages();
 
       this.setState({
         images: [...this.state.gallery.images, ...images]
