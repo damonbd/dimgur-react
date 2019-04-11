@@ -12,7 +12,6 @@ import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
 
 // dummy media
-
 import image1 from './images/test-media/image1.png';
 import image2 from './images/test-media/image2.jpg';
 import image3 from './images/test-media/image3.jpg';
@@ -57,14 +56,17 @@ class App extends Component {
     this.modalHandler = this.modalHandler.bind(this);
     this.signUpModalHandler = this.signUpModalHandler.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
+    this.updateGallery = this.updateGallery.bind(this);
   };
 
   componentDidMount() {
     window.addEventListener('scroll', this.stickyHeader);
+    window.addEventListener('scroll', this.updateGallery);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.stickyHeader);
+    window.addEventListener('scroll', this.updateGallery);
   }
 
   initImages() {
@@ -72,15 +74,35 @@ class App extends Component {
 
     let imagesToFormat = [image1, image2, image3, image4, image5, image6];
     imagesToFormat.forEach(i => {
-        let image = {};
-        image.url = i;
-        images.push(image);
+      let image = {};
+      image.url = i;
+      images.push(image);
     });
 
     images[0].username = "Bobby";
     images[0].username = "Robert";
 
     return images;
+  }
+
+  updateGallery() {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      let images = [];
+
+      let imagesToFormat = [image6, image5, image4, image3, image2, image1];
+      imagesToFormat.forEach(i => {
+        let image = {};
+        image.url = i;
+        images.push(image);
+      });
+
+      images[0].username = "Bobby";
+      images[0].username = "Robert";
+
+      this.setState({
+        images: [...this.state.gallery.images, ...images]
+      })
+    }
   }
 
   stickyHeader() {

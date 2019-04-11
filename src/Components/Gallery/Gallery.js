@@ -5,14 +5,6 @@ import ImageContainer from '../ImageContainer/ImageContainer';
 
 import './Gallery.css'
 
-// dummy media
-import image1 from '../../images/test-media/image1.png';
-import image2 from '../../images/test-media/image2.jpg';
-import image3 from '../../images/test-media/image3.jpg';
-import image4 from '../../images/test-media/image4.jpeg';
-import image5 from '../../images/test-media/image5.jpg';
-import image6 from '../../images/test-media/image6.jpg';
-
 class Gallery extends Component {
 
     constructor(props) {
@@ -22,34 +14,9 @@ class Gallery extends Component {
             newImage: " ",
             images: props.images
         }
-
-        this.updateGallery = this.updateGallery.bind(this);
     }
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.updateGallery);
-    }
-
-    updateGallery() {
-        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-            let images = [];
-
-            let imagesToFormat = [image6, image5, image4, image3, image2, image1];
-            imagesToFormat.forEach(i => {
-                let image = {};
-                image.url = i;
-                images.push(image);
-            });
-
-            images[0].username = "Bobby";
-            images[0].username = "Robert";
-
-            this.setState({
-                images: [...this.state.images, ...images]
-            })
-        }
-
-    }
+    componentDidMount() { }
 
     componentWillReceiveProps(nextProps) {
         // You don't have to do this check first, but it can help prevent an unneeded render
