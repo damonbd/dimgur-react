@@ -21,10 +21,34 @@ class Gallery extends Component {
             newImage: " ",
             images: []
         }
+
+        this.updateGallery = this.updateGallery.bind(this);
     }
 
     componentDidMount() {
         this.createImageArray();
+        window.addEventListener('scroll', this.updateGallery);
+    }
+
+    updateGallery() {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+            let images = [];
+
+            let imagesToFormat = [image6, image5, image4, image3, image2, image1];
+            imagesToFormat.forEach(i => {
+                let image = {};
+                image.url = i;
+                images.push(image);
+            });
+
+            images[0].username = "Bobby";
+            images[0].username = "Robert";
+
+            this.setState({
+                images: [...this.state.images, ...images]
+            })
+        }
+
     }
 
     createImageArray() {
