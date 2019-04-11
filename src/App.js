@@ -11,6 +11,15 @@ import Uploader from './Components/Uploader/Uploader';
 import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
 
+// dummy media
+
+import image1 from './images/test-media/image1.png';
+import image2 from './images/test-media/image2.jpg';
+import image3 from './images/test-media/image3.jpg';
+import image4 from './images/test-media/image4.jpeg';
+import image5 from './images/test-media/image5.jpg';
+import image6 from './images/test-media/image6.jpg';
+
 class App extends Component {
 
   constructor(props) {
@@ -36,6 +45,9 @@ class App extends Component {
       },
       user: {
         username: ""
+      },
+      gallery: {
+        images: this.initImages()
       }
     }
 
@@ -48,11 +60,27 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.stickyHeader)
+    window.addEventListener('scroll', this.stickyHeader);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.stickyHeader);
+  }
+
+  initImages() {
+    let images = [];
+
+    let imagesToFormat = [image1, image2, image3, image4, image5, image6];
+    imagesToFormat.forEach(i => {
+        let image = {};
+        image.url = i;
+        images.push(image);
+    });
+
+    images[0].username = "Bobby";
+    images[0].username = "Robert";
+
+    return images;
   }
 
   stickyHeader() {
@@ -92,7 +120,6 @@ class App extends Component {
   }
 
   galleryHandler(newImage) {
-
     // mock username here, would be returned from server with username already
     newImage.username = this.state.user.username;
 
@@ -159,7 +186,7 @@ class App extends Component {
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>
 
-        <Gallery newImage={this.state.uploader.newImage} username={this.state.user.username} />
+        <Gallery images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         {toaster}
       </div>

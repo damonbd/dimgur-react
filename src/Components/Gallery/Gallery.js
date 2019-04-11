@@ -17,16 +17,16 @@ class Gallery extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             newImage: " ",
-            images: []
+            images: props.images
         }
 
         this.updateGallery = this.updateGallery.bind(this);
     }
 
     componentDidMount() {
-        this.createImageArray();
         window.addEventListener('scroll', this.updateGallery);
     }
 
@@ -51,24 +51,6 @@ class Gallery extends Component {
 
     }
 
-    createImageArray() {
-        let images = [];
-
-        let imagesToFormat = [image1, image2, image3, image4, image5, image6];
-        imagesToFormat.forEach(i => {
-            let image = {};
-            image.url = i;
-            images.push(image);
-        });
-
-        images[0].username = "Bobby";
-        images[0].username = "Robert";
-
-        this.setState({
-            images: images
-        });
-    }
-
     componentWillReceiveProps(nextProps) {
         // You don't have to do this check first, but it can help prevent an unneeded render
         if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined) {
@@ -86,6 +68,13 @@ class Gallery extends Component {
                 });
             }
         }
+
+        if (nextProps.images != null && nextProps.images.length > 0) {
+            this.setState({
+                images: [...this.state.images, ...nextProps.images]
+            })
+        }
+
     }
 
     render() {
