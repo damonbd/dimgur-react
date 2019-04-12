@@ -10,6 +10,7 @@ import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
 import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
+import SignIn from './Components/SignIn/SignIn';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -42,6 +43,9 @@ class App extends Component {
       signUp: {
         modalIsOpen: false
       },
+      signIn: {
+        modalIsOpen: false
+      },
       user: {
         username: ""
       },
@@ -55,7 +59,9 @@ class App extends Component {
     this.hideToaster = this.hideToaster.bind(this);
     this.modalHandler = this.modalHandler.bind(this);
     this.signUpModalHandler = this.signUpModalHandler.bind(this);
+    this.signInModalHandler = this.signInModalHandler.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
+    this.signInHandler = this.signInHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
   };
 
@@ -158,6 +164,14 @@ class App extends Component {
     })
   }
 
+  signInModalHandler(isOpen) {
+    this.setState({
+      signIn: {
+        modalIsOpen: isOpen != null ? isOpen : false
+      }
+    })
+  }
+
   signUpHandler(username) {
     if (username != null) {
       this.setState({
@@ -166,7 +180,16 @@ class App extends Component {
         }
       })
     }
+  }
 
+  signInHandler(username) {
+    if (username != null) {
+      this.setState({
+        user: {
+          username: username
+        }
+      })
+    }
   }
 
   render() {
@@ -185,9 +208,16 @@ class App extends Component {
 
           <img style={{ height: "fit-content" }} src={logo} />
 
-          <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
-            <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
-          </Modal>
+          <div className="btn-group">
+            <Modal visibilityHandler={this.signInModalHandler} title="Sign in" btnText="Sign In" isOpen={this.state.signIn.modalIsOpen} >
+              <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} signInModalHandler={this.signInModalHandler} />
+            </Modal>
+            <div style={{paddingLeft: "10px" }}>
+              <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
+                <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
+              </Modal>
+            </div>
+          </div>
         </header>
 
         <Modal visibilityHandler={this.modalHandler} title="TitleTest" isOpen={this.state.modal.isOpen} >
