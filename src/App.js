@@ -11,6 +11,7 @@ import Uploader from './Components/Uploader/Uploader';
 import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
+import SignOut from './Components/SignOut/SignOut';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -62,6 +63,7 @@ class App extends Component {
     this.signInModalHandler = this.signInModalHandler.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
     this.signInHandler = this.signInHandler.bind(this);
+    this.signOutHandler = this.signOutHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
   };
 
@@ -192,12 +194,44 @@ class App extends Component {
     }
   }
 
+  signOutHandler() {
+    this.setState({
+      user: {
+        username: ""
+      }
+    })
+  }
+
   render() {
     let toaster = null;
+    let authButtons = null;
+
 
     if (this.state.toaster.isVisible) {
       toaster = (
         <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} hide={this.hideToaster} />
+      )
+    }
+
+    if (this.state.user.username != "") {
+      authButtons = (
+        <div className="btn-group">
+          <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
+        </div>
+      )
+    }
+    else {
+      authButtons = (
+        <div className="btn-group">
+          <Modal visibilityHandler={this.signInModalHandler} title="Sign in" btnText="Sign In" isOpen={this.state.signIn.modalIsOpen} >
+            <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} signInModalHandler={this.signInModalHandler} />
+          </Modal>
+          <div style={{ paddingLeft: "10px" }}>
+            <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
+              <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
+            </Modal>
+          </div>
+        </div>
       )
     }
 
@@ -208,16 +242,7 @@ class App extends Component {
 
           <img style={{ height: "fit-content" }} src={logo} />
 
-          <div className="btn-group">
-            <Modal visibilityHandler={this.signInModalHandler} title="Sign in" btnText="Sign In" isOpen={this.state.signIn.modalIsOpen} >
-              <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} signInModalHandler={this.signInModalHandler} />
-            </Modal>
-            <div style={{paddingLeft: "10px" }}>
-              <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
-                <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
-              </Modal>
-            </div>
-          </div>
+          {authButtons}
         </header>
 
         <Modal visibilityHandler={this.modalHandler} title="TitleTest" isOpen={this.state.modal.isOpen} >

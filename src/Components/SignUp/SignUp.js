@@ -5,7 +5,6 @@ import Toaster from '../Toaster/Toaster';
 import './SignUp.css'
 
 class SignUp extends Component {
-
     constructor(props) {
         super(props);
         this.state = {

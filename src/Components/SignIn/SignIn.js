@@ -5,7 +5,6 @@ import Toaster from '../Toaster/Toaster';
 import '../SignUp/SignUp.css'
 
 class SignIn extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +51,7 @@ class SignIn extends Component {
                 <div className="signUp-form-button-group">
                     <button onClick={this.signInClick} className="btn btn-primary signUp-submit"> Submit </button>
                 </div>
-            </div >
+            </div>
         );
     }
 }
