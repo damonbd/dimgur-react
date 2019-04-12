@@ -12,6 +12,7 @@ import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import SignOut from './Components/SignOut/SignOut';
+import Carousel from './Components/Carousel/Carousel';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -81,9 +82,10 @@ class App extends Component {
     let images = [];
 
     let imagesToFormat = [image1, image2, image3, image4, image5, image6];
-    imagesToFormat.forEach(i => {
+    imagesToFormat.forEach((url, i) => {
       let image = {};
-      image.url = i;
+      image.url = url;
+      image.index = i;
       images.push(image);
     });
 
@@ -206,7 +208,6 @@ class App extends Component {
     let toaster = null;
     let authButtons = null;
 
-
     if (this.state.toaster.isVisible) {
       toaster = (
         <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} hide={this.hideToaster} />
@@ -252,6 +253,8 @@ class App extends Component {
         <ImageModal title="ImageTest" isOpen={this.state.modalImageTest.isOpen} >
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>
+
+        <Carousel images={this.state.gallery.images} />
 
         <Gallery images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
