@@ -58,3 +58,7 @@
 .modal .body {
     padding: 1.2em;
 }
+
+.modal-center {
+    display: inline-block;
+}

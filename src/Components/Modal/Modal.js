@@ -41,7 +41,7 @@ class Modal extends Component {
                                 <span style={{ color: "#f2f2f2" }} aria-hidden="true">x</span>
                             </button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body modal-center">
                             {this.props.children}
                         </div>
                     </div>
