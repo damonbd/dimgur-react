@@ -1,0 +1,18 @@
+.carousel-carousel {
+    width: 350px;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.carousel-btn-left {
+    margin-left: 5px;
+}
+
+.carousel-btn-right {
+    margin-right: 5px;
+}
