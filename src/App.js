@@ -55,7 +55,8 @@ class App extends Component {
         images: this.initImages()
       },
       carousel: {
-        modalIsOpen: false
+        modalIsOpen: false,
+        index: 0
       }
     }
 
@@ -164,10 +165,11 @@ class App extends Component {
     })
   }
 
-  carouselHandler(isOpen) {
+  carouselHandler(isOpen, index) {
     this.setState({
       carousel: {
-        modalIsOpen: isOpen
+        modalIsOpen: isOpen,
+        index: index
       }
     })
   }
@@ -267,7 +269,7 @@ class App extends Component {
         </ImageModal>
 
         <Modal visibilityHandler={this.carouselHandler} title="Carousel of Fun!" isOpen={this.state.carousel.modalIsOpen} >
-          <Carousel images={this.state.gallery.images} />
+          <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </Modal>
 
         <Gallery carouselHandler={this.carouselHandler} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />

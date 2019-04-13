@@ -10,7 +10,7 @@ class Carousel extends Component {
         super(props);
         this.state = {
             images: props.images,
-            currentImage: props.images[0]
+            currentImage: props.images[props.index]
         }
     }
 
@@ -34,8 +34,8 @@ class Carousel extends Component {
             <div className="carousel-carousel">
                 <ImageContainer image={this.state.currentImage} />
                 <div className="carousel-controls">
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-left btn btn-success signUp-submit"> {"<"} </button>
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-right btn btn-success signUp-submit"> {">"} </button>
+                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success signUp-submit"> {"<"} </button>
+                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success signUp-submit"> {">"} </button>
                 </div>
             </div>
         );
