@@ -28,7 +28,6 @@ class Gallery extends Component {
 
             reader.onloadend = (e) => {
                 image.url = reader.result;
-                console.log(reader)
                 this.setState({
                     newImage: image,
                     images: [image, ...this.state.images]
