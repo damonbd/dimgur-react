@@ -34,7 +34,8 @@ class App extends Component {
         body: " "
       },
       uploader: {
-        newImage: " "
+        newImage: " ",
+        modalIsOpen: false
       },
       modal: {
         isOpen: false
@@ -71,6 +72,7 @@ class App extends Component {
     this.signOutHandler = this.signOutHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
     this.carouselHandler = this.carouselHandler.bind(this);
+    this.uploaderHandler = this.uploaderHandler.bind(this);
   };
 
   componentDidMount() {
@@ -218,6 +220,14 @@ class App extends Component {
     })
   }
 
+  uploaderHandler(isOpen) {
+    this.setState({
+      uploader: {
+        modalIsOpen: isOpen
+      }
+    })
+  }
+
   render() {
     let toaster = null;
     let authButtons = null;
@@ -253,20 +263,14 @@ class App extends Component {
     return (
       <div className="App container">
         <header id="header" className="header">
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
+          <Modal visibilityHandler={this.uploaderHandler} title="Upload" btnText="Upload" isOpen={this.state.uploader.modalIsOpen}>
+            <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
+          </Modal>
 
           <img style={{ height: "fit-content" }} src={logo} />
 
           {authButtons}
         </header>
-
-        <Modal visibilityHandler={this.modalHandler} title="TitleTest" isOpen={this.state.modal.isOpen} >
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
-        </Modal>
-
-        <ImageModal title="ImageTest" isOpen={this.state.modalImageTest.isOpen} >
-          <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
-        </ImageModal>
 
         <Modal visibilityHandler={this.carouselHandler} title="Carousel of Fun!" isOpen={this.state.carousel.modalIsOpen} >
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
