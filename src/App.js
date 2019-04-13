@@ -80,7 +80,7 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.stickyHeader);
-    window.addEventListener('scroll', this.updateGallery);
+    window.removeEventListener('scroll', this.updateGallery);
   }
 
   initImages() {

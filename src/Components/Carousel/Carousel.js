@@ -12,6 +12,25 @@ class Carousel extends Component {
             images: props.images,
             currentImage: props.images[props.index]
         }
+
+        this.carouselNav = this.carouselNav.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('keypress', this.carouselNav);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keypress', this.carouselNav);
+    }
+
+    carouselNav(e) {
+        if (e.keyCode === 37) {
+            this.updateCurrentImage(this.state.currentImage.index - 1);
+         }
+         if (e.keyCode === 39) {
+            this.updateCurrentImage(this.state.currentImage.index + 1);            
+         }
     }
 
     updateCurrentImage(index) {
