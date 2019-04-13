@@ -41,12 +41,11 @@ class Gallery extends Component {
                 images: [...this.state.images, ...nextProps.images]
             })
         }
-
     }
 
     render() {
         let imageList = this.state.images.map((image, i) => (
-            <ImageContainer key={i} image={image} />
+            <ImageContainer carouselHandler={this.props.carouselHandler} key={i} image={image} />
         ));
 
         return (

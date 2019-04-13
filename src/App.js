@@ -53,6 +53,9 @@ class App extends Component {
       },
       gallery: {
         images: this.initImages()
+      },
+      carousel: {
+        modalIsOpen: false
       }
     }
 
@@ -66,6 +69,7 @@ class App extends Component {
     this.signInHandler = this.signInHandler.bind(this);
     this.signOutHandler = this.signOutHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
+    this.carouselHandler = this.carouselHandler.bind(this);
   };
 
   componentDidMount() {
@@ -156,6 +160,14 @@ class App extends Component {
     this.setState({
       modal: {
         isOpen: isOpen != null ? isOpen : false
+      }
+    })
+  }
+
+  carouselHandler(isOpen) {
+    this.setState({
+      carousel: {
+        modalIsOpen: isOpen
       }
     })
   }
@@ -254,9 +266,11 @@ class App extends Component {
           <img src="https://www.html5rocks.com/static/images/tutorials/easy-hidpi/chrome1x.png" />
         </ImageModal>
 
-        <Carousel images={this.state.gallery.images} />
+        <Modal visibilityHandler={this.carouselHandler} title="Carousel of Fun!" isOpen={this.state.carousel.modalIsOpen} >
+          <Carousel images={this.state.gallery.images} />
+        </Modal>
 
-        <Gallery images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
+        <Gallery carouselHandler={this.carouselHandler} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         {toaster}
       </div>
