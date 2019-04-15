@@ -34,8 +34,6 @@ class Gallery extends Component {
             //     });
             // }
 
-            debugger;
-
             let image = nextProps.newImage
             this.setState({
                 newImage: image,
