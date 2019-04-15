@@ -15,7 +15,22 @@ class uploader extends Component {
             routes: this.getRoutes()
         }
 
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.submit = this.submit.bind(this);
+    }
+
+    handleInputChange(event) {
+
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+
+        this.setState(() => ({
+            image: {
+                ...this.state.image,
+                title: value
+            }
+        }))
     }
 
     getRoutes = () => {
@@ -33,17 +48,10 @@ class uploader extends Component {
         // mock call
 
         this.imagePreview(e.target.files[0]);
-        //this.uploadSuccess(e.target.files[0]);
 
-        // $.ajax({
-        //     type: "POST",
-        //     processData: false,
-        //     contentType: false,
-        //     url: this.state.routes.uploadImageUrl,
-        //     data: new FormData(e.target.files[0]),
-        //     success: this.uploadSuccess(e.target.files[0]),
-        //     error: this.uploadSuccess
-        // });
+        this.setState({
+            title: e.target.files[0].name
+        })
 
         //reset input
         e.target.value = null;
@@ -51,9 +59,10 @@ class uploader extends Component {
 
     //takes an Image oject returned by handleImage, sets state, notifies toaster and gallery
     uploadSuccess() {
-        if (this.state.image.type == null) {
+        if (this.state.image == null) {
             return;
         }
+
 
         //add to gallery     
         this.props.toasterHandler(true, true, "Image successfully uploaded.");
@@ -71,6 +80,7 @@ class uploader extends Component {
 
         reader.onloadend = (e) => {
             image.url = reader.result;
+            image.title = image.name;
             this.setState({
                 image: image,
             });
@@ -86,14 +96,14 @@ class uploader extends Component {
         return (
             <div>
                 <div>
-                    <img style={{width: "256px"}} src={this.state.image != null ? this.state.image.url : ""} />
+                    <img style={{ width: "256px" }} src={this.state.image != null ? this.state.image.url : ""} />
                 </div>
                 <div>
                     <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Select Image" />
                     <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
                 </div>
                 <div>
-                    <input type="text" value={this.state.name} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="signUp-input" />
+                    <input type="text" value={this.state.image != null ? this.state.image.title: ""} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="signUp-input" />
                 </div>
                 <div className="signUp-form-button-group">
                     <button onClick={this.submit} className="btn btn-primary signUp-submit"> Upload </button>

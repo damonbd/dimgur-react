@@ -22,23 +22,25 @@ class Gallery extends Component {
         // You don't have to do this check first, but it can help prevent an unneeded render
         if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined) {
 
-            let image = nextProps.newImage;
-            let reader = new FileReader();
-            let url = reader.readAsDataURL(image);
+            // let image = nextProps.newImage;
+            // let reader = new FileReader();
+            // let url = reader.readAsDataURL(image);
 
-            reader.onloadend = (e) => {
-                image.url = reader.result;
-                this.setState({
-                    newImage: image,
-                    images: [image, ...this.state.images]
-                });
-            }
-        }
+            // reader.onloadend = (e) => {
+            //     image.url = reader.result;
+            //     this.setState({
+            //         newImage: image,
+            //         images: [image, ...this.state.images]
+            //     });
+            // }
 
-        if (nextProps.images != null && nextProps.images.length > 0) {
+            debugger;
+
+            let image = nextProps.newImage
             this.setState({
-                images: [...this.state.images, ...nextProps.images]
-            })
+                newImage: image,
+                images: [image, ...this.state.images]
+            });
         }
     }
 
