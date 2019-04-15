@@ -13,7 +13,9 @@ class ImageContainer extends Component {
     }
 
     carouselHandler() {
-        this.props.carouselHandler(true, this.props.image.index);
+        if (this.props.carouselHandler != null) {
+            this.props.carouselHandler(true, this.props.image.index);
+        }
     }
 
     render() {
