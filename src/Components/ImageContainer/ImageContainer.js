@@ -9,19 +9,20 @@ class ImageContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.carouselHandler = this.carouselHandler.bind(this);
+        this.showCarouselModal = this.showCarouselModal.bind(this);
     }
 
-    carouselHandler() {
-        if (this.props.carouselHandler != null) {
-            this.props.carouselHandler(true, this.props.image.index);
+    showCarouselModal() {
+        if (this.props.carouselHandler != null && this.props.modalHandler != null) {
+            this.props.modalHandler("carousel", true);
+            this.props.carouselHandler(this.props.image.index);
         }
     }
 
     render() {
         return (
             <div className="image-container">
-                <div onClick={this.carouselHandler}>
+                <div onClick={this.showCarouselModal}>
                     <Image image={this.props.image} />
                 </div>
                 <div style={{ backgroundColor: "#56585f" }}>

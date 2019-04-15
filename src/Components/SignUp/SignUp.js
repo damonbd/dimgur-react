@@ -55,10 +55,7 @@ class SignUp extends Component {
         isValid = this.validateConfirmPassword();
 
         if (isValid) {
-            this.props.signUpModalHandler(false);
-        }
-        else {
-            this.props.signUpModalHandler(true);
+            this.props.modalHandler("signUp", false);
         }
 
         return isValid;

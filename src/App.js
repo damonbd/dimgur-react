@@ -35,19 +35,12 @@ class App extends Component {
       },
       uploader: {
         newImage: " ",
-        modalIsOpen: false
       },
       modal: {
         isOpen: false
       },
       modalImageTest: {
         isOpen: false
-      },
-      signUp: {
-        modalIsOpen: false
-      },
-      signIn: {
-        modalIsOpen: false
       },
       user: {
         username: ""
@@ -56,8 +49,25 @@ class App extends Component {
         images: this.initImages()
       },
       carousel: {
-        modalIsOpen: false,
         index: 0
+      },
+      modals: {
+        uploader: {
+          name: "uploader",
+          isOpen: false
+        },
+        signUp: {
+          name: "signUp",
+          isOpen: false
+        },
+        signIn: {
+          name: "signIn",
+          isOpen: false
+        },
+        carousel: {
+          name: "carousel",
+          isOpen: false
+        }
       }
     }
 
@@ -65,14 +75,11 @@ class App extends Component {
     this.galleryHandler = this.galleryHandler.bind(this);
     this.hideToaster = this.hideToaster.bind(this);
     this.modalHandler = this.modalHandler.bind(this);
-    this.signUpModalHandler = this.signUpModalHandler.bind(this);
-    this.signInModalHandler = this.signInModalHandler.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
     this.signInHandler = this.signInHandler.bind(this);
     this.signOutHandler = this.signOutHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
     this.carouselHandler = this.carouselHandler.bind(this);
-    this.uploaderHandler = this.uploaderHandler.bind(this);
   };
 
   componentDidMount() {
@@ -159,35 +166,22 @@ class App extends Component {
     })
   }
 
-  modalHandler(isOpen) {
+  modalHandler(modal, isOpen) {
+    console.log(modal);
+    console.log(isOpen)
+    var modals = { ...this.state.modals };
+    modals[modal].isOpen = isOpen;
+
     this.setState({
-      modal: {
-        isOpen: isOpen != null ? isOpen : false
-      }
+      modals: modals
     })
   }
 
-  carouselHandler(isOpen, index) {
+  carouselHandler(index) {
+    debugger;
     this.setState({
       carousel: {
-        modalIsOpen: isOpen,
         index: index
-      }
-    })
-  }
-
-  signUpModalHandler(isOpen) {
-    this.setState({
-      signUp: {
-        modalIsOpen: isOpen != null ? isOpen : false
-      }
-    })
-  }
-
-  signInModalHandler(isOpen) {
-    this.setState({
-      signIn: {
-        modalIsOpen: isOpen != null ? isOpen : false
       }
     })
   }
@@ -220,14 +214,6 @@ class App extends Component {
     })
   }
 
-  uploaderHandler(isOpen) {
-    this.setState({
-      uploader: {
-        modalIsOpen: isOpen
-      }
-    })
-  }
-
   render() {
     let toaster = null;
     let authButtons = null;
@@ -248,12 +234,12 @@ class App extends Component {
     else {
       authButtons = (
         <div className="btn-group">
-          <Modal visibilityHandler={this.signInModalHandler} title="Sign in" btnText="Sign In" isOpen={this.state.signIn.modalIsOpen} >
-            <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} signInModalHandler={this.signInModalHandler} />
+          <Modal visibilityHandler={this.modalHandler} title="Sign in" btnText="Sign In" isOpen={this.state.modals.signIn.isOpen} name={this.state.modals.signIn.name} >
+            <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
           </Modal>
           <div style={{ paddingLeft: "10px" }}>
-            <Modal visibilityHandler={this.signUpModalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.signUp.modalIsOpen} >
-              <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} signUpModalHandler={this.signUpModalHandler} />
+            <Modal visibilityHandler={this.modalHandler} title="Thanks for Signing up!" btnText="Sign Up" isOpen={this.state.modals.signUp.isOpen} name={this.state.modals.signUp.name}>
+              <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
             </Modal>
           </div>
         </div>
@@ -263,8 +249,8 @@ class App extends Component {
     return (
       <div className="App container">
         <header id="header" className="header">
-          <Modal visibilityHandler={this.uploaderHandler} title="Upload" btnText="Upload" isOpen={this.state.uploader.modalIsOpen}>
-            <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
+          <Modal visibilityHandler={this.modalHandler} title="Upload" btnText="Upload" isOpen={this.state.modals.uploader.isOpen} name={this.state.modals.uploader.name}>
+            <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
           </Modal>
 
           <img style={{ height: "fit-content" }} src={logo} />
@@ -272,11 +258,11 @@ class App extends Component {
           {authButtons}
         </header>
 
-        <Modal visibilityHandler={this.carouselHandler} title="Carousel of Fun!" isOpen={this.state.carousel.modalIsOpen} >
+        <Modal visibilityHandler={this.modalHandler} title="Carousel of Fun!" isOpen={this.state.modals.carousel.isOpen} name={this.state.modals.carousel.name}>
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </Modal>
 
-        <Gallery carouselHandler={this.carouselHandler} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
+        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         {toaster}
       </div>
