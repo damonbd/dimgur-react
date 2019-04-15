@@ -211,6 +211,13 @@ class App extends Component {
     })
   }
 
+  openModal = (modal) => {
+    var modal = { ...modal };
+    modal.isOpen = !modal.isOpen;
+
+    this.modalHandler(modal);
+  }
+
   render() {
     let toaster = null;
     let authButtons = null;
@@ -231,13 +238,9 @@ class App extends Component {
     else {
       authButtons = (
         <div className="btn-group">
-          <Modal visibilityHandler={this.modalHandler} title="Sign in" btnText="Sign In" modal={this.state.modals.signIn}>
-            <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
-          </Modal>
+          <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary app-btn">Sign In</button>
           <div style={{ paddingLeft: "10px" }}>
-            <Modal visibilityHandler={this.modalHandler} title="Thanks for Signing up!" btnText="Sign Up" modal={this.state.modals.signUp}>
-              <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
-            </Modal>
+            <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary">Sign Up</button>
           </div>
         </div>
       )
@@ -246,20 +249,31 @@ class App extends Component {
     return (
       <div className="App container">
         <header id="header" className="header">
-            <Modal visibilityHandler={this.modalHandler} title="Upload" btnText="Upload" modal={this.state.modals.uploader}>
-              <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
-            </Modal>
+
+          <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
 
           <img style={{ height: "fit-content" }} src={logo} />
 
           {authButtons}
         </header>
 
+        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
+
+        <Modal visibilityHandler={this.modalHandler} title="Sign in" btnText="Sign In" modal={this.state.modals.signIn}>
+          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+        </Modal>
+
+        <Modal visibilityHandler={this.modalHandler} title="Thanks for Signing up!" btnText="Sign Up" modal={this.state.modals.signUp}>
+          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+        </Modal>
+
+        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader} title="Upload">
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+        </Modal>
+
         <Modal visibilityHandler={this.modalHandler} title="Carousel of Fun!" modal={this.state.modals.carousel}>
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </Modal>
-
-        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         {toaster}
       </div>

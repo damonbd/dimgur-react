@@ -47,8 +47,7 @@ class Modal extends Component {
         }
 
         return (
-            <div className="">
-                <button onClick={this.setDisplay} className="btn btn-primary"> {this.props.btnText != null ? this.props.btnText : "Show Modal"} </button>
+            <div>
                 {modal}
             </div>
         );

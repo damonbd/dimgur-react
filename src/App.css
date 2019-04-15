@@ -46,3 +46,7 @@
   max-width: 1110px;
   position: fixed;
 }
+
+.app-btn {
+  height: fit-content;
+}
