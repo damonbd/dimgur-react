@@ -6,12 +6,18 @@ import Toaster from '../Toaster/Toaster';
 import './Uploader.css';
 import '../SignUp/SignUp.css'
 
+import stockImage from '../../images/uploader.png';
+
 class uploader extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            image: null,
+            image: {
+                url: stockImage,
+                title: ""
+            },
             routes: this.getRoutes()
         }
 
@@ -96,14 +102,14 @@ class uploader extends Component {
         return (
             <div>
                 <div>
-                    <img style={{ width: "256px" }} src={this.state.image != null ? this.state.image.url : ""} />
+                    <img onClick={this.triggerUpload} style={{ width: "256px" }} src={this.state.image.url} />
                 </div>
                 <div>
-                    <input onClick={this.triggerUpload} className="btn btn-success" type="button" id="upload" value="Select Image" />
+                    <p> Select your image </p>
                     <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
                 </div>
                 <div>
-                    <input type="text" value={this.state.image != null ? this.state.image.title: ""} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="signUp-input" />
+                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="signUp-input" />
                 </div>
                 <div className="signUp-form-button-group">
                     <button onClick={this.submit} className="btn btn-primary signUp-submit"> Upload </button>
