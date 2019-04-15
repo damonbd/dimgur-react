@@ -7,36 +7,34 @@ class Modal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.name,
-            isOpen: false
+            modal: props.modal
         }
     }
 
-    show = () => {
-        this.props.visibilityHandler(this.state.name, true);
-    }
+    setDisplay = () => {
+        var modal = { ...this.state.modal };
+        modal.isOpen = !modal.isOpen;
 
-    hide = () => {
-        this.props.visibilityHandler(this.state.name, false);
+        this.props.visibilityHandler(modal);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps != null) {
-            this.setState({ isOpen: nextProps.isOpen });
+            this.setState({ modal: nextProps.modal });
         }
     }
 
     render() {
         let modal = null;
 
-        if (this.state.isOpen) {
+        if (this.state.modal.isOpen) {
             modal = (
                 <div>
-                    <div onClick={this.hide} className="modal-overlay"></div>
+                    <div onClick={this.setDisplay} className="modal-overlay"></div>
                     <div className="modal">
                         <div className="modal-header">
                             {this.props.title}
-                            <button onClick={this.hide} type="button" data-dismiss="modal" aria-label="Close" className="close">
+                            <button onClick={this.setDisplay} type="button" data-dismiss="modal" aria-label="Close" className="close">
                                 <span style={{ color: "#f2f2f2" }} aria-hidden="true">x</span>
                             </button>
                         </div>
@@ -50,7 +48,7 @@ class Modal extends Component {
 
         return (
             <div className="">
-                <button onClick={this.show} className="btn btn-primary"> {this.props.btnText != null ? this.props.btnText : "Show Modal"} </button>
+                <button onClick={this.setDisplay} className="btn btn-primary"> {this.props.btnText != null ? this.props.btnText : "Show Modal"} </button>
                 {modal}
             </div>
         );

@@ -14,7 +14,8 @@ class ImageContainer extends Component {
 
     showCarouselModal() {
         if (this.props.carouselHandler != null && this.props.modalHandler != null) {
-            this.props.modalHandler("carousel", true);
+            this.props.modal.isOpen = !this.props.modal.isOpen;
+            this.props.modalHandler(this.props.modal, true);
             this.props.carouselHandler(this.props.image.index);
         }
     }
