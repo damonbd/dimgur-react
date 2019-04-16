@@ -20,6 +20,8 @@ class Modal extends Component {
     }
 
     keyboardPress(event) {
+        event.preventDefault();
+
         if (event.keyCode == 27) {
             this.setDisplay();
         }
