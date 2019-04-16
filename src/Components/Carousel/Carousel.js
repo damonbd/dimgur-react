@@ -28,10 +28,10 @@ class Carousel extends Component {
     carouselNav(e) {
         if (e.keyCode === 37) {
             this.updateCurrentImage(this.state.currentImage.index - 1);
-         }
-         if (e.keyCode === 39) {
-            this.updateCurrentImage(this.state.currentImage.index + 1);            
-         }
+        }
+        if (e.keyCode === 39) {
+            this.updateCurrentImage(this.state.currentImage.index + 1);
+        }
     }
 
     updateCurrentImage(index) {
@@ -52,7 +52,7 @@ class Carousel extends Component {
     render() {
         return (
             <div className="carousel-carousel">
-                <ImageContainer image={this.state.currentImage} />
+                <ImageContainer cursor="default" image={this.state.currentImage} />
                 <div className="carousel-controls">
                     <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success auth-submit"> {"<"} </button>
                     <Download image={this.state.currentImage} />

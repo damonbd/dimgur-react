@@ -8,6 +8,9 @@ class ImageContainer extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            cursor: props.cursor
+        }
 
         this.showCarouselModal = this.showCarouselModal.bind(this);
     }
@@ -21,8 +24,9 @@ class ImageContainer extends Component {
     }
 
     render() {
+
         return (
-            <div className="image-container">
+            <div className="image-container" style={{cursor: this.props.cursor}} >
                 <div onClick={this.showCarouselModal}>
                     <Image image={this.props.image} />
                 </div>
