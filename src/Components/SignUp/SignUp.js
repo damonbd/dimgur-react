@@ -19,6 +19,21 @@ class SignUp extends Component {
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.keyboardPress = this.keyboardPress.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('keypress', this.keyboardPress);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keypress', this.keyboardPress);
+    }
+
+    keyboardPress(event) {
+        if (event.keyCode == 13) {
+            this.signUpClick();
+        }
     }
 
     handleInputChange(event) {
