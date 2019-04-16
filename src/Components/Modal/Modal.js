@@ -3,35 +3,41 @@ import React, { Component } from 'react';
 import './Modal.css'
 
 class Modal extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             modal: props.modal
         }
+
+        this.keyboardPress = this.keyboardPress.bind(this);
     }
 
     componentDidMount() {
-        window.addEventListener('keypress', this.keyboardPress);
+        window.addEventListener('keyup', this.keyboardPress);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('keypress', this.keyboardPress);
+        window.removeEventListener('keyup', this.keyboardPress);
     }
 
     keyboardPress(event) {
         event.preventDefault();
 
         if (event.keyCode == 27) {
-            this.setDisplay();
+            this.setDisplay(false);
         }
     }
 
-    setDisplay = () => {
-        var modal = { ...this.state.modal };
-        modal.isOpen = !modal.isOpen;
+    setDisplay(isOpen) {
+        // gets around proxy parameter issue, not sure how to fix
+        // keyup is somehow culprit
+        if (isOpen != true || isOpen != false) {
+            isOpen = false;
+        }
+            var modal = { ...this.state.modal };
+            modal.isOpen = isOpen != null ? isOpen : !modal.isOpen;
 
-        this.props.visibilityHandler(modal);
+            this.props.visibilityHandler(modal);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -46,11 +52,11 @@ class Modal extends Component {
         if (this.state.modal.isOpen) {
             modal = (
                 <div>
-                    <div onClick={this.setDisplay} className="modal-overlay"></div>
+                    <div onClick={this.setDisplay.bind(this)} className="modal-overlay"></div>
                     <div className="modal">
                         <div className="modal-header">
                             {this.state.modal.title}
-                            <button onClick={this.setDisplay} type="button" data-dismiss="modal" aria-label="Close" className="close">
+                            <button onClick={this.setDisplay.bind(this)} type="button" data-dismiss="modal" aria-label="Close" className="close">
                                 <span style={{ color: "#f2f2f2" }} aria-hidden="true">x</span>
                             </button>
                         </div>
