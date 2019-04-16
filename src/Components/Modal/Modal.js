@@ -23,7 +23,7 @@ class Modal extends Component {
     keyboardPress(event) {
         event.preventDefault();
 
-        if (event.keyCode == 27) {
+        if (event.keyCode === 27) {
             this.setDisplay(false);
         }
     }
@@ -31,11 +31,11 @@ class Modal extends Component {
     setDisplay(isOpen) {
         // gets around proxy parameter issue, not sure how to fix
         // keyup is somehow culprit
-        if (isOpen != true || isOpen != false) {
+        if (isOpen !== true || isOpen !== false) {
             isOpen = false;
         }
             var modal = { ...this.state.modal };
-            modal.isOpen = isOpen != null ? isOpen : !modal.isOpen;
+            modal.isOpen = isOpen !== null ? isOpen : !modal.isOpen;
 
             this.props.visibilityHandler(modal);
     }

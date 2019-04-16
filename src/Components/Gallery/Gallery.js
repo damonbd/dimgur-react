@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Image from '../Image/Image';
 import ImageContainer from '../ImageContainer/ImageContainer';
 
 import './Gallery.css'
@@ -20,7 +19,7 @@ class Gallery extends Component {
 
     componentWillReceiveProps(nextProps) {
         // You don't have to do this check first, but it can help prevent an unneeded render
-        if (nextProps.newImage !== this.state.newImage && nextProps.newImage != undefined) {
+        if (nextProps.newImage !== this.state.newImage && nextProps.newImage !== undefined) {
 
             // let image = nextProps.newImage;
             // let reader = new FileReader();

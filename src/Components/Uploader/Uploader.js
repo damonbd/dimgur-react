@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-
-import Toaster from '../Toaster/Toaster';
 
 import './Uploader.css';
 import '../SignUp/SignUp.css'
@@ -26,10 +23,7 @@ class uploader extends Component {
     }
 
     handleInputChange(event) {
-
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
+        const value = event.target.value;
 
         this.setState(() => ({
             image: {
@@ -40,7 +34,7 @@ class uploader extends Component {
     }
 
     getRoutes = () => {
-        var routes = new Array();
+        var routes = [];
         var baseUrl = "http://localhost:8080";
         routes.uploadImageUrl = baseUrl + "/uploadImage";
         return routes;
@@ -81,7 +75,7 @@ class uploader extends Component {
 
     imagePreview = (image) => {
         let reader = new FileReader();
-        let url = reader.readAsDataURL(image);
+        reader.readAsDataURL(image);
 
         reader.onloadend = (e) => {
             image.url = reader.result;
@@ -101,7 +95,7 @@ class uploader extends Component {
         return (
             <div>
                 <div>
-                    <img onClick={this.triggerUpload} style={{ width: "256px" }} src={this.state.image.url} />
+                    <img onClick={this.triggerUpload} style={{ width: "256px" }} src={this.state.image.url} alt="" />
                 </div>
                 <div>
                     <p> Select your image </p>

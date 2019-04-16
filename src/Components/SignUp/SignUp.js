@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Toaster from '../Toaster/Toaster';
-
 import './SignUp.css'
 
 class SignUp extends Component {
@@ -31,7 +29,7 @@ class SignUp extends Component {
     }
 
     keyboardPress(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             this.signUpClick();
         }
     }
@@ -110,7 +108,7 @@ class SignUp extends Component {
         let isValid = true;
         let message = "";
 
-        if (this.state.password != this.state.confirmPassword || !this.state.confirmPassword.length > 0) {
+        if (this.state.password !== this.state.confirmPassword || !this.state.confirmPassword.length > 0) {
             message = "Password fields do not match."
             isValid = false;
         }

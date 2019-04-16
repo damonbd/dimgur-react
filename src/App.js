@@ -8,7 +8,6 @@ import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
-import ImageModal from './Components/ImageModal/ImageModal';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import SignOut from './Components/SignOut/SignOut';
@@ -216,7 +215,7 @@ class App extends Component {
   }
 
   openModal = (modal) => {
-    var modal = { ...modal };
+    modal = { ...modal };
     modal.isOpen = !modal.isOpen;
 
     this.modalHandler(modal);
@@ -232,7 +231,7 @@ class App extends Component {
       )
     }
 
-    if (this.state.user.username != "") {
+    if (this.state.user.username !== "") {
       authButtons = (
         <div className="btn-group">
           <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
@@ -242,8 +241,8 @@ class App extends Component {
     else {
       authButtons = (
         <div className="">
-            <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button>
-            <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button>
+          <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button>
+          <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button>
         </div>
       )
     }
@@ -254,7 +253,7 @@ class App extends Component {
 
           <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
 
-          <img style={{ height: "fit-content" }} src={logo} />
+          <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
 
           {authButtons}
         </header>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Toaster from '../Toaster/Toaster';
-
 import '../SignUp/SignUp.css'
 
 class SignIn extends Component {

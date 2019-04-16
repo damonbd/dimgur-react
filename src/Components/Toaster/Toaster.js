@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import $ from 'jquery';
+import React from 'react';
 
 import './Toaster.css'
 
 const Toaster = (props) => {
-    let backgroundColor = "toaster-background-error";
+    let backgroundColor = "toaster toaster-background-error";
     if (props.isSuccess) {
-        backgroundColor = "toaster-background-success";
+        backgroundColor = "toaster toaster-background-success";
     }
 
     return (
-        <div onClick={props.hide} className={backgroundColor + " " + "toaster"}>
+        <div onClick={props.hide} className={backgroundColor}>
             <div className="toaster-body">
                 {props.body}
             </div>

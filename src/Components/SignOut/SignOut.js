@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
-import Toaster from '../Toaster/Toaster';
-
 import '../SignUp/SignUp.css'
 
 class SignIn extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     signOutClick = () => {
         // imaginary ajax call
         let isValid = true;
