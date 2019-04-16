@@ -11,6 +11,20 @@ class Modal extends Component {
         }
     }
 
+    componentDidMount() {
+        window.addEventListener('keypress', this.keyboardPress);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keypress', this.keyboardPress);
+    }
+
+    keyboardPress(event) {
+        if (event.keyCode == 27) {
+            this.setDisplay();
+        }
+    }
+
     setDisplay = () => {
         var modal = { ...this.state.modal };
         modal.isOpen = !modal.isOpen;
