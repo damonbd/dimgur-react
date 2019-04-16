@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../SignUp/SignUp.css'
+import '../Authentication.css'
 
 class SignIn extends Component {
     signOutClick = () => {
@@ -21,8 +21,8 @@ class SignIn extends Component {
     render() {
         return (
             <div>
-                <div className="signUp-form-button-group">
-                    <button onClick={this.signOutClick} className="btn btn-success signUp-submit"> Sign Out </button>
+                <div className="auth-form-button-group">
+                    <button onClick={this.signOutClick} className="btn btn-success auth-submit"> Sign Out </button>
                 </div>
             </div >
         );

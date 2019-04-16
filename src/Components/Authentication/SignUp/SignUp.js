@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './SignUp.css'
+import '../Authentication.css'
 
 class SignUp extends Component {
     constructor(props) {
@@ -123,18 +123,18 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-                <div className="signUp-form">
-                    <p className="signUp-error" >{this.state.usernameError}</p>
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="signUp-input" />
-                    <p className="signUp-error" >{this.state.emailError}</p>
-                    <input type="text" value={this.state.email} onChange={this.handleInputChange} maxLength="255" id="email" name="email" placeholder="Email" className="signUp-input" />
-                    <p className="signUp-error" >{this.state.passwordError}</p>
-                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="signUp-input" />
-                    <p className="signUp-error" >{this.state.passwordConfirmError}</p>
-                    <input type="password" value={this.state.passwordConfirm} onChange={this.handleInputChange} maxLength="255" id="confirmPassword" name="confirmPassword" placeholder="Retype Password" className="signUp-input" />
+                <div className="auth-form">
+                    <p className="auth-error" >{this.state.usernameError}</p>
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="auth-input" />
+                    <p className="auth-error" >{this.state.emailError}</p>
+                    <input type="text" value={this.state.email} onChange={this.handleInputChange} maxLength="255" id="email" name="email" placeholder="Email" className="auth-input" />
+                    <p className="auth-error" >{this.state.passwordError}</p>
+                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="auth-input" />
+                    <p className="auth-error" >{this.state.passwordConfirmError}</p>
+                    <input type="password" value={this.state.passwordConfirm} onChange={this.handleInputChange} maxLength="255" id="confirmPassword" name="confirmPassword" placeholder="Retype Password" className="auth-input" />
                 </div>
-                <div className="signUp-form-button-group">
-                    <button onClick={this.signUpClick} className="btn btn-primary signUp-submit"> Submit </button>
+                <div className="auth-form-button-group">
+                    <button onClick={this.signUpClick} className="btn btn-primary auth-submit"> Submit </button>
                 </div>
             </div >
         );

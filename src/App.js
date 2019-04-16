@@ -8,9 +8,9 @@ import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
-import SignUp from './Components/SignUp/SignUp';
-import SignIn from './Components/SignIn/SignIn';
-import SignOut from './Components/SignOut/SignOut';
+import SignUp from './Components/Authentication/SignUp/SignUp';
+import SignIn from './Components/Authentication/SignIn/SignIn';
+import SignOut from './Components/Authentication/SignOut/SignOut';
 import Carousel from './Components/Carousel/Carousel';
 
 // dummy media

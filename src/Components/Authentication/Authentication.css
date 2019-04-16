@@ -1,4 +1,4 @@
-.signUp-input {
+.auth-input {
     width: 100%;
     margin-bottom: 10px;
     background-color: #191919;
@@ -10,16 +10,16 @@
     padding-left: 10px;
 }
 
-.signUp-form {
+.auth-form {
     width: 100%;
     display: inline-block;
 }
 
-.signUp-submit {
+.auth-submit {
     float: right;
 }
 
-.signUp-error {
+.auth-error {
     color: red; 
     text-align: left;
     font-size: 13px;

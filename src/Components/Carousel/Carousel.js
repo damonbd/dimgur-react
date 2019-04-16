@@ -54,9 +54,9 @@ class Carousel extends Component {
             <div className="carousel-carousel">
                 <ImageContainer image={this.state.currentImage} />
                 <div className="carousel-controls">
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success signUp-submit"> {"<"} </button>
+                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success auth-submit"> {"<"} </button>
                     <Download image={this.state.currentImage} />
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success signUp-submit"> {">"} </button>
+                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success auth-submit"> {">"} </button>
                 </div>
             </div>
         );

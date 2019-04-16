@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../SignUp/SignUp.css'
+import '../Authentication.css'
 
 class SignIn extends Component {
     constructor(props) {
@@ -42,12 +42,12 @@ class SignIn extends Component {
     render() {
         return (
             <div>
-                <div className="signUp-form">
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="signUp-input" />
-                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="signUp-input" />
+                <div className="auth-form">
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="auth-input" />
+                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="auth-input" />
                 </div>
-                <div className="signUp-form-button-group">
-                    <button onClick={this.signInClick} className="btn btn-primary signUp-submit"> Submit </button>
+                <div className="auth-form-button-group">
+                    <button onClick={this.signInClick} className="btn btn-primary auth-submit"> Submit </button>
                 </div>
             </div>
         );

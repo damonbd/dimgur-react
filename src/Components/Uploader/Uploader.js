@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import './Uploader.css';
-import '../SignUp/SignUp.css'
+import '../Authentication/Authentication.css'
 
 import stockImage from '../../images/uploader.png';
 
-class uploader extends Component {
+class Uploader extends Component {
 
     constructor(props) {
         super(props);
@@ -102,14 +102,14 @@ class uploader extends Component {
                     <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
                 </div>
                 <div>
-                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="signUp-input" />
+                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="auth-input" />
                 </div>
-                <div className="signUp-form-button-group">
-                    <button onClick={this.submit} className="btn btn-primary signUp-submit"> Upload </button>
+                <div className="auth-form-button-group">
+                    <button onClick={this.submit} className="btn btn-primary auth-submit"> Upload </button>
                 </div>
             </div>
         );
     }
 }
 
-export default uploader;
+export default Uploader;
