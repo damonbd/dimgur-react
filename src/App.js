@@ -241,11 +241,9 @@ class App extends Component {
     }
     else {
       authButtons = (
-        <div className="btn-group">
-          <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary app-btn">Sign In</button>
-          <div style={{ paddingLeft: "10px" }}>
-            <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary">Sign Up</button>
-          </div>
+        <div className="">
+            <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button>
+            <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button>
         </div>
       )
     }

@@ -50,3 +50,7 @@
 .app-btn {
   height: fit-content;
 }
+
+.app-btn-sign-up {
+  margin-left: 10px;
+}
