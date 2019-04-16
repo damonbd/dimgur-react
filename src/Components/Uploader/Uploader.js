@@ -95,7 +95,7 @@ class Uploader extends Component {
         return (
             <div>
                 <div>
-                    <img onClick={this.triggerUpload} style={{ width: "256px" }} src={this.state.image.url} alt="" />
+                    <img className="uploader-image" onClick={this.triggerUpload} src={this.state.image.url} alt="" />
                 </div>
                 <div>
                     <p> Select your image </p>

@@ -6,3 +6,8 @@
 .uploader-hide {
     display:none;
 }
+
+.uploader-image {
+    width: 256px;
+    cursor: pointer;
+}
