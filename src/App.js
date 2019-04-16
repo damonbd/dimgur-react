@@ -54,18 +54,22 @@ class App extends Component {
       modals: {
         uploader: {
           name: "uploader",
+          title: "Upload",
           isOpen: false
         },
         signUp: {
           name: "signUp",
+          title: "Thanks For Signing Up!",
           isOpen: false
         },
         signIn: {
           name: "signIn",
+          title: "Sign In",
           isOpen: false
         },
         carousel: {
           name: "carousel",
+          title: "Carousel of Fun!",
           isOpen: false
         }
       }
@@ -259,19 +263,19 @@ class App extends Component {
 
         <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
-        <Modal visibilityHandler={this.modalHandler} title="Sign in" btnText="Sign In" modal={this.state.modals.signIn}>
+        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
           <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
         </Modal>
 
-        <Modal visibilityHandler={this.modalHandler} title="Thanks for Signing up!" btnText="Sign Up" modal={this.state.modals.signUp}>
+        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signUp}>
           <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
         </Modal>
 
-        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader} title="Upload">
+        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
           <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
         </Modal>
 
-        <Modal visibilityHandler={this.modalHandler} title="Carousel of Fun!" modal={this.state.modals.carousel}>
+        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </Modal>
 

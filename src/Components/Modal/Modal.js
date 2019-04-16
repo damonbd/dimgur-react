@@ -33,7 +33,7 @@ class Modal extends Component {
                     <div onClick={this.setDisplay} className="modal-overlay"></div>
                     <div className="modal">
                         <div className="modal-header">
-                            {this.props.title}
+                            {this.state.modal.title}
                             <button onClick={this.setDisplay} type="button" data-dismiss="modal" aria-label="Close" className="close">
                                 <span style={{ color: "#f2f2f2" }} aria-hidden="true">x</span>
                             </button>
