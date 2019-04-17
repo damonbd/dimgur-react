@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Download = (props: any) => {
-    return <a className="btn btn-success" role="button" href={props.image.url}
+import IImage from '../../interfaces/IImage';
+
+interface IDownloadProps {
+  image: IImage;
+}
+
+const Download = (props: IDownloadProps) => {
+  return <a className="btn btn-success" role="button" href={props.image.url}
     download={props.image.name != null ? props.image.name : "Image"}>
-   Download
+    Download
  </a>
 }
 
