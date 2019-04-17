@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, ComponentState } from 'react';
+
+import IModal from '../../../interfaces/IModal'
 
 import '../Authentication.css'
 
-interface IMyComponentProps {
+interface ISignInProps {
+    modal: IModal;
+
     signInHandler: Function;
     toasterHandler: Function;
     modalHandler: Function;
-    modal: any;
 }
 
-interface IMyComponentState {
-    username?: any;
-    password?: any;
+interface ISignInState {
+    username: string;
+    password: string;
 }
 
-class SignIn extends Component<IMyComponentProps, IMyComponentState> {
-    constructor(props: any) {
+class SignIn extends Component<ISignInProps, ISignInState> {
+    constructor(props: ISignInProps) {
         super(props);
         this.state = {
             username: "",
@@ -35,20 +38,16 @@ class SignIn extends Component<IMyComponentProps, IMyComponentState> {
     }
 
     //React.KeyboardEvent
-    keyboardPress = (e: any) => {
+    keyboardPress = (e: KeyboardEvent) => {
         if (e.keyCode === 13) {
             this.signInClick();
         }
     }
 
     handleInputChange(e: any) {
-        const target: any = e.target;
-        const name: any = target.name;
-        const value: any = target.value;
-
         this.setState({
-            [name]: value
-        })
+            [e.target.name]: e.target.value
+        } as ComponentState)
     }
 
     signInClick = () => {
@@ -60,7 +59,7 @@ class SignIn extends Component<IMyComponentProps, IMyComponentState> {
 
             // rather than doing real auth, just set the user to a property
             this.props.signInHandler(this.state.username);
-            
+
             this.props.modal.isOpen = false;
             this.props.modalHandler(this.props.modal);
         }
