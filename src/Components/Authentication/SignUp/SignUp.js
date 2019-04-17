@@ -93,7 +93,8 @@ class SignUp extends Component {
         let isValid = true;
         let message = ""
 
-        if (!this.state.password.includes("1,2,3,4,5,6,7,8,9,0")) {
+        var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        if (!numbers.some(r => this.state.password.includes(r))) {
             message = "Please include at least 1 number";
         }
 
