@@ -3,21 +3,22 @@ import React, { Component } from 'react';
 import ImageContainer from '../ImageContainer/ImageContainer';
 import Download from '../Download/Download';
 
+import IImage from '../../interfaces/IImage';
+
 import './Carousel.css'
 
-interface IMyComponentProps {
-    index: any;
-    images: any;
+interface ICarouselProps {
+    index: number;
+    images: IImage[];
 }
 
-interface IMyComponentState {
-    images: any;
-    currentImage: any;
+interface ICarouselState {
+    images: IImage[];
+    currentImage: IImage;
 }
 
-class Carousel extends Component<IMyComponentProps, IMyComponentState> {
-
-    constructor(props: any) {
+class Carousel extends Component<ICarouselProps, ICarouselState> {
+    constructor(props: ICarouselProps) {
         super(props);
         this.state = {
             images: props.images,

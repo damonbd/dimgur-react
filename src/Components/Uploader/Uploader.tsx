@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 
+import IImage from '../../interfaces/IImage';
+import IModal from '../../interfaces/IModal';
+
 import './Uploader.css';
 import '../Authentication/Authentication.css'
 
 import stockImage from '../../images/uploader.png';
 
-interface IMyComponentProps {
-    toasterHandler: Function;
+interface IUploaderProps {
+    modal: IModal;
+
     galleryHandler: Function;
     modalHandler: Function;
-    modal: any;
+    toasterHandler: Function;
 }
 
-interface IMyComponentState {
-    image: any;
+interface IUploaderState {
+    image: IImage;
     routes: any;
 }
 
-class Uploader extends Component<IMyComponentProps, IMyComponentState> {
-
-    constructor(props: any) {
+class Uploader extends Component<IUploaderProps, IUploaderState> {
+    constructor(props: IUploaderProps) {
         super(props);
-
         this.state = {
             image: {
+                index: 0,
+                lastModified: "",
+                lastModifiedDate: "",
+                name: "",
+                size: 0,
+                title: "",
+                type: "",
                 url: stockImage,
-                title: ""
             },
             routes: this.getRoutes()
         }
@@ -53,19 +61,15 @@ class Uploader extends Component<IMyComponentProps, IMyComponentState> {
     }
 
     triggerUpload = () => {
-        //document.getElementById('image').click();
+        let imageElement = document.getElementById('image');
+        if (imageElement != null) {
+            imageElement.click();
+        }
     }
 
     handleImage = (e: any) => {
-        // mock call
-
-
-        let image: any = {... this.state.image};
-        image.title = e.target.files[0]
-
-        this.setState({
-            image: image
-        })
+        // mock validation call
+        this.imagePreview(e.target.files[0]);
 
         //reset input
         e.target.value = null;
