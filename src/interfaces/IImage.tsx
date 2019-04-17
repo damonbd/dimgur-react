@@ -7,4 +7,5 @@ export default interface IImage {
     title: string,
     type: any;
     url: any;
+    username: string;
 }

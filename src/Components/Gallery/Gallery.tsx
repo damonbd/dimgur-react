@@ -2,29 +2,34 @@ import React, { Component } from 'react';
 
 import ImageContainer from '../ImageContainer/ImageContainer';
 
+import IImage from '../../interfaces/IImage';
+import IModal from '../../interfaces/IModal';
+
+import ImageModel from '../../models/ImageModel';
+
 import './Gallery.css'
 
-interface IMyComponentProps {
-    carouselHandler: any;
-    modalHandler: any;
-    modal: any;
-    images: any;
-    newImage: any;
-    username: any;
-}
-
-interface IMyComponentState {
+interface IGalleryProps {
+    images: IImage[];
+    modal: IModal;
     newImage: string;
-    images: any;
+    username: string;
+
+    carouselHandler: Function;
+    modalHandler: Function;
 }
 
-class Gallery extends Component<IMyComponentProps, IMyComponentState> {
+interface IGalleryState {
+    newImage: string;
+    images: ImageModel[];
+}
 
-    constructor(props: any) {
+class Gallery extends Component<IGalleryProps, IGalleryState> {
+    constructor(props: IGalleryProps) {
         super(props);
 
         this.state = {
-            newImage: " ",
+            newImage: "",
             images: props.images
         }
     }
@@ -47,7 +52,9 @@ class Gallery extends Component<IMyComponentProps, IMyComponentState> {
             //     });
             // }
 
-            let image = nextProps.newImage
+            let image = nextProps.newImage;
+            let images: ImageModel[] = [image, ...this.state.images];
+
             this.setState({
                 newImage: image,
                 images: [image, ...this.state.images]

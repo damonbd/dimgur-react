@@ -13,6 +13,8 @@ import SignIn from './Components/Authentication/SignIn/SignIn';
 import SignOut from './Components/Authentication/SignOut/SignOut';
 import Carousel from './Components/Carousel/Carousel';
 
+import IImage from './interfaces/IImage';
+
 // dummy media
 import image1 from './images/test-media/image1.png';
 import image2 from './images/test-media/image2.jpg';
@@ -107,7 +109,7 @@ class App extends Component<IAppProps, IAppState> {
   }
 
   initImages() {
-    let images: any = [];
+    let images: IImage[] = [];
 
     let imagesToFormat = [image1, image2, image3, image4, image5, image6];
     imagesToFormat.forEach((url, i) => {

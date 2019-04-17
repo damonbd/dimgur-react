@@ -34,6 +34,7 @@ class Uploader extends Component<IUploaderProps, IUploaderState> {
                 title: "",
                 type: "",
                 url: stockImage,
+                username: "",
             },
             routes: this.getRoutes()
         }

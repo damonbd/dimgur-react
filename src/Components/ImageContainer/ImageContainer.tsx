@@ -4,7 +4,7 @@ import Image from '../Image/Image'
 
 import './ImageContainer.css'
 
-interface IMyComponentProps {
+interface IImageContainerProps {
     image?: any;
     modal?: any;
     cursor?: any;
@@ -12,12 +12,11 @@ interface IMyComponentProps {
     modalHandler?: Function;
 }
 
-interface IMyComponentState {
+interface IImageContainerState {
     cursor: string;
 }
 
-class ImageContainer extends Component<IMyComponentProps, IMyComponentState> {
-
+class ImageContainer extends Component<IImageContainerProps, IImageContainerState> {
     constructor(props: any) {
         super(props);
         this.state = {

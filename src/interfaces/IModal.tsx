@@ -1,4 +1,4 @@
-export default interface ISignInProps {
+export default interface IModal {
     name: string,
     title: string,
     isOpen: boolean
