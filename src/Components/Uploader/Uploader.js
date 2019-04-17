@@ -66,6 +66,7 @@ class Uploader extends Component {
         //add to gallery     
         this.props.toasterHandler(true, true, "Image successfully uploaded.");
         this.props.galleryHandler(this.state.image);
+        this.props.modal.isOpen = false;
         this.props.modalHandler(this.props.modal);
     }
 

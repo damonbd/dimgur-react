@@ -53,6 +53,8 @@ class SignUp extends Component {
 
             // rather than doing real auth, just set the user to a property
             this.props.signUpHandler(this.state.username);
+            this.props.modal.isOpen = false;
+            this.props.modalHandler(this.props.modal);
         }
         else {
             this.props.toasterHandler(true, false, "Form Error!");

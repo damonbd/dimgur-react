@@ -11,6 +11,21 @@ class SignIn extends Component {
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.keyboardPress = this.keyboardPress.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('keypress', this.keyboardPress);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keypress', this.keyboardPress);
+    }
+
+    keyboardPress(event) {
+        if (event.keyCode === 13) {
+            this.signInClick();
+        }
     }
 
     handleInputChange(event) {
@@ -32,7 +47,9 @@ class SignIn extends Component {
 
             // rather than doing real auth, just set the user to a property
             this.props.signInHandler(this.state.username);
-            this.props.modalHandler(this.state.modal);
+            
+            this.props.modal.isOpen = false;
+            this.props.modalHandler(this.props.modal);
         }
         else {
             this.props.toasterHandler(true, false, "Error: Wrong credentials!");

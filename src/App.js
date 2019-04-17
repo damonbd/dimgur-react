@@ -269,7 +269,7 @@ class App extends Component {
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modal={this.state.modals.uploader} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>
