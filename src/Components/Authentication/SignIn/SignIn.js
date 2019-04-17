@@ -32,7 +32,7 @@ class SignIn extends Component {
 
             // rather than doing real auth, just set the user to a property
             this.props.signInHandler(this.state.username);
-            this.props.modalHandler("signIn", false);
+            this.props.modalHandler(this.state.modal);
         }
         else {
             this.props.toasterHandler(true, false, "Error: Wrong credentials!");

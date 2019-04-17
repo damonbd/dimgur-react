@@ -261,15 +261,15 @@ class App extends Component {
         <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
-          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signUp}>
-          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signUp} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modal={this.state.modals.uploader} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>
