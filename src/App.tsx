@@ -21,10 +21,10 @@ import image4 from './images/test-media/image4.jpeg';
 import image5 from './images/test-media/image5.jpg';
 import image6 from './images/test-media/image6.jpg';
 
-interface IMyComponentProps {
+interface IAppProps {
 }
 
-interface IMyComponentState {
+interface IAppState {
   isLoaded: boolean;
   toaster: any;
   uploader: any;
@@ -35,9 +35,9 @@ interface IMyComponentState {
   modals: any;
 }
 
-class App extends Component<IMyComponentProps, IMyComponentState> {
+class App extends Component<IAppProps, IAppState> {
 
-  constructor(props: any) {
+  constructor(props: IAppProps) {
     super(props);
     this.state = {
       isLoaded: false,
