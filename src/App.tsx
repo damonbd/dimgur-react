@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import './App.css';
-import logo from './images/dimgur-logo.JPG'
+import logo from './images/test-media/image1.png'
 
 import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
@@ -21,9 +21,23 @@ import image4 from './images/test-media/image4.jpeg';
 import image5 from './images/test-media/image5.jpg';
 import image6 from './images/test-media/image6.jpg';
 
-class App extends Component {
+interface IMyComponentProps {
+}
 
-  constructor(props) {
+interface IMyComponentState {
+  isLoaded: boolean;
+  toaster: any;
+  uploader: any;
+  modal: any;
+  user: any;
+  gallery: any;
+  carousel: any;
+  modals: any;
+}
+
+class App extends Component<IMyComponentProps, IMyComponentState> {
+
+  constructor(props: any) {
     super(props);
     this.state = {
       isLoaded: false,
@@ -36,9 +50,6 @@ class App extends Component {
         newImage: " ",
       },
       modal: {
-        isOpen: false
-      },
-      modalImageTest: {
         isOpen: false
       },
       user: {
@@ -96,11 +107,11 @@ class App extends Component {
   }
 
   initImages() {
-    let images = [];
+    let images: any = [];
 
     let imagesToFormat = [image1, image2, image3, image4, image5, image6];
     imagesToFormat.forEach((url, i) => {
-      let image = {};
+      let image: any = {};
       image.url = url;
       image.index = i;
       images.push(image);
@@ -112,27 +123,28 @@ class App extends Component {
     return images;
   }
 
+  // isnt updating gallery.images
   updateGallery() {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       let images = this.initImages();
 
-      this.setState({
-        images: [...this.state.gallery.images, ...images]
-      })
+      // this.setState({
+      //   images: [...this.state.gallery.images, ...images]
+      // })
     }
   }
 
   stickyHeader() {
-    if ($(this).scrollTop() > 175) {
-      // animate fixed div to small size:
-      $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
-    } else {
-      //  animate fixed div to original size
-      $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
-    }
+    // if ($(this).scrollTop() > 175) {
+    //   // animate fixed div to small size:
+    //   $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
+    // } else {
+    //   //  animate fixed div to original size
+    //   $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
+    // }
   }
 
-  toasterHandler(isVisible, isSuccess, body) {
+  toasterHandler(isVisible: boolean, isSuccess: boolean, body: string) {
     this.setState({
       toaster: {
         isVisible: isVisible,
@@ -158,7 +170,7 @@ class App extends Component {
     });
   }
 
-  galleryHandler(newImage) {
+  galleryHandler(newImage: any) {
     // mock username here, would be returned from server with username already
     newImage.username = this.state.user.username;
 
@@ -169,7 +181,7 @@ class App extends Component {
     })
   }
 
-  modalHandler(modal, isOpen) {
+  modalHandler(modal: any, isOpen: boolean) {
     var modals = { ...this.state.modals };
 
     modal.isOpen = isOpen;
@@ -180,7 +192,7 @@ class App extends Component {
     })
   }
 
-  carouselHandler(index) {
+  carouselHandler(index: number) {
     this.setState({
       carousel: {
         index: index
@@ -188,7 +200,7 @@ class App extends Component {
     })
   }
 
-  signUpHandler(username) {
+  signUpHandler(username: any) {
     if (username != null) {
       this.setState({
         user: {
@@ -198,7 +210,7 @@ class App extends Component {
     }
   }
 
-  signInHandler(username) {
+  signInHandler(username: string) {
     if (username != null) {
       this.setState({
         user: {
@@ -216,11 +228,9 @@ class App extends Component {
     })
   }
 
-  openModal = (modal) => {
+  openModal = (modal: any) => {
     modal = { ...modal };
-    modal.isOpen = !modal.isOpen;
-
-    this.modalHandler(modal);
+    this.modalHandler(modal, true);
   }
 
   render() {
@@ -263,15 +273,15 @@ class App extends Component {
         <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
-          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signUp}>
-          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} />
+          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signUp} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>

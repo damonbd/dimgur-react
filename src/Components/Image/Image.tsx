@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Image.css'
 
-const Image = (props) => {
+const Image = (props: any) => {
     return <div className="image-c">
         <img style={{maxWidth: "100%", height: "240px" }} src={props.image.url} alt={props.image.title} />
     </div>

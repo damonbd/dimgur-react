@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 
 import '../Authentication.css'
 
-class SignIn extends Component {
-    constructor(props) {
+interface IMyComponentProps {
+    signInHandler: Function;
+    toasterHandler: Function;
+    modalHandler: Function;
+    modal: any;
+}
+
+interface IMyComponentState {
+    username?: any;
+    password?: any;
+}
+
+class SignIn extends Component<IMyComponentProps, IMyComponentState> {
+    constructor(props: any) {
         super(props);
         this.state = {
             username: "",
@@ -22,16 +34,17 @@ class SignIn extends Component {
         window.removeEventListener('keypress', this.keyboardPress);
     }
 
-    keyboardPress(event) {
-        if (event.keyCode === 13) {
+    //React.KeyboardEvent
+    keyboardPress = (e: any) => {
+        if (e.keyCode === 13) {
             this.signInClick();
         }
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
+    handleInputChange(e: any) {
+        const target: any = e.target;
+        const name: any = target.name;
+        const value: any = target.value;
 
         this.setState({
             [name]: value
@@ -60,8 +73,8 @@ class SignIn extends Component {
         return (
             <div>
                 <div className="auth-form">
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="auth-input" />
-                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="auth-input" />
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" />
+                    <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="auth-input" />
                 </div>
                 <div className="auth-form-button-group">
                     <button onClick={this.signInClick} className="btn btn-primary auth-submit"> Submit </button>

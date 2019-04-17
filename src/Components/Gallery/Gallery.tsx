@@ -4,9 +4,23 @@ import ImageContainer from '../ImageContainer/ImageContainer';
 
 import './Gallery.css'
 
-class Gallery extends Component {
+interface IMyComponentProps {
+    carouselHandler: any;
+    modalHandler: any;
+    modal: any;
+    images: any;
+    newImage: any;
+    username: any;
+}
 
-    constructor(props) {
+interface IMyComponentState {
+    newImage: string;
+    images: any;
+}
+
+class Gallery extends Component<IMyComponentProps, IMyComponentState> {
+
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -17,7 +31,7 @@ class Gallery extends Component {
 
     componentDidMount() { }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: any) {
         // You don't have to do this check first, but it can help prevent an unneeded render
         if (nextProps.newImage !== this.state.newImage && nextProps.newImage !== undefined) {
 
@@ -42,7 +56,7 @@ class Gallery extends Component {
     }
 
     render() {
-        let imageList = this.state.images.map((image, i) => (
+        let imageList = this.state.images.map((image: any, i: number) => (
             <ImageContainer carouselHandler={this.props.carouselHandler} modalHandler={this.props.modalHandler} modal={this.props.modal} key={i} image={image} />
         ));
 

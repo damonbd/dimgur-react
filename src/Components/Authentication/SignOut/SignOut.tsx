@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 
 import '../Authentication.css'
 
-class SignIn extends Component {
+interface IMyComponentProps {
+    toasterHandler: Function;
+    signOutHandler: Function;
+}
+
+interface IMyComponentState {
+}
+
+class SignIn extends Component<IMyComponentProps, IMyComponentState> {
     signOutClick = () => {
         // imaginary ajax call
         let isValid = true;

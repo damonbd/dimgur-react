@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 
 import './Modal.css'
 
-class Modal extends Component {
-    constructor(props) {
+interface IMyComponentProps {
+    visibilityHandler: Function;
+    modal: any;
+}
+
+interface IMyComponentState {
+    modal: any;
+}
+
+class Modal extends Component<IMyComponentProps, IMyComponentState> {
+    constructor(props: any) {
         super(props);
         this.state = {
             modal: props.modal
@@ -20,7 +29,7 @@ class Modal extends Component {
         window.removeEventListener('keyup', this.keyboardPress);
     }
 
-    keyboardPress(event) {
+    keyboardPress(event: any) {
         event.preventDefault();
 
         if (event.keyCode === 27) {
@@ -28,7 +37,7 @@ class Modal extends Component {
         }
     }
 
-    setDisplay(isOpen) {
+    setDisplay(isOpen: any) {
         // gets around proxy parameter issue, not sure how to fix
         // keyup is somehow culprit
         if (isOpen !== true || isOpen !== false) {
@@ -40,7 +49,7 @@ class Modal extends Component {
             this.props.visibilityHandler(modal);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: any) {
         if (nextProps != null) {
             this.setState({ modal: nextProps.modal });
         }

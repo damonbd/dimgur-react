@@ -2,8 +2,26 @@ import React, { Component } from 'react';
 
 import '../Authentication.css'
 
-class SignUp extends Component {
-    constructor(props) {
+interface IMyComponentProps {
+    signUpHandler: Function;
+    toasterHandler: Function;
+    modalHandler: Function;
+    modal: any;
+}
+
+interface IMyComponentState {
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    usernameError: string;
+    emailError: string;
+    passwordError: string;
+    passwordConfirmError: string;
+}
+
+class SignUp extends Component<IMyComponentProps, IMyComponentState> {
+    constructor(props: any) {
         super(props);
         this.state = {
             username: "",
@@ -28,20 +46,20 @@ class SignUp extends Component {
         window.removeEventListener('keypress', this.keyboardPress);
     }
 
-    keyboardPress(event) {
-        if (event.keyCode === 13) {
+    keyboardPress(e: any) {
+        if (e.keyCode === 13) {
             this.signUpClick();
         }
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
+    handleInputChange(e: any) {
+        const target: any = e.target;
+        const name: any = target.name;
+        const value: any = target.value;
 
-        this.setState({
-            [name]: value
-        })
+        // this.setState({
+        //     [name]: value
+        // })
     }
 
     signUpClick = () => {
@@ -80,7 +98,7 @@ class SignUp extends Component {
         let isValid = true;
         let message = ""
 
-        if (!this.state.email.includes("@") || !this.state.email.includes("." || !this.state.email.length > 0)) {
+        if (!this.state.email.includes("@") || !this.state.email.includes(".") || this.state.email.length <= 0) {
             message = "That doesn't look like a valid email"
         }
 
@@ -111,7 +129,7 @@ class SignUp extends Component {
         let isValid = true;
         let message = "";
 
-        if (this.state.password !== this.state.confirmPassword || !this.state.confirmPassword.length > 0) {
+        if (this.state.password !== this.state.confirmPassword || this.state.confirmPassword.length <= 0) {
             message = "Password fields do not match."
             isValid = false;
         }
@@ -128,13 +146,13 @@ class SignUp extends Component {
             <div>
                 <div className="auth-form">
                     <p className="auth-error" >{this.state.usernameError}</p>
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} maxLength="255" id="username" name="username" placeholder="Username" className="auth-input" />
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" />
                     <p className="auth-error" >{this.state.emailError}</p>
-                    <input type="text" value={this.state.email} onChange={this.handleInputChange} maxLength="255" id="email" name="email" placeholder="Email" className="auth-input" />
+                    <input type="text" value={this.state.email} onChange={this.handleInputChange} id="email" name="email" placeholder="Email" className="auth-input" />
                     <p className="auth-error" >{this.state.passwordError}</p>
-                    <input type="password" value={this.state.password} onChange={this.handleInputChange} maxLength="255" id="password" name="password" placeholder="Password" className="auth-input" />
+                    <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="auth-input" />
                     <p className="auth-error" >{this.state.passwordConfirmError}</p>
-                    <input type="password" value={this.state.passwordConfirm} onChange={this.handleInputChange} maxLength="255" id="confirmPassword" name="confirmPassword" placeholder="Retype Password" className="auth-input" />
+                    <input type="password" value={this.state.confirmPassword} onChange={this.handleInputChange} id="confirmPassword" name="confirmPassword" placeholder="Retype Password" className="auth-input" />
                 </div>
                 <div className="auth-form-button-group">
                     <button onClick={this.signUpClick} className="btn btn-primary auth-submit"> Submit </button>

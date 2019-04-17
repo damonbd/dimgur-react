@@ -4,9 +4,21 @@ import Image from '../Image/Image'
 
 import './ImageContainer.css'
 
-class ImageContainer extends Component {
+interface IMyComponentProps {
+    image?: any;
+    modal?: any;
+    cursor?: any;
+    carouselHandler?: Function;
+    modalHandler?: Function;
+}
 
-    constructor(props) {
+interface IMyComponentState {
+    cursor: string;
+}
+
+class ImageContainer extends Component<IMyComponentProps, IMyComponentState> {
+
+    constructor(props: any) {
         super(props);
         this.state = {
             cursor: props.cursor
@@ -26,7 +38,7 @@ class ImageContainer extends Component {
     render() {
 
         return (
-            <div className="image-container" style={{cursor: this.props.cursor}} >
+            <div className="image-container" style={{ cursor: this.props.cursor }} >
                 <div onClick={this.showCarouselModal}>
                     <Image image={this.props.image} />
                 </div>

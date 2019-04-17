@@ -5,9 +5,21 @@ import '../Authentication/Authentication.css'
 
 import stockImage from '../../images/uploader.png';
 
-class Uploader extends Component {
+interface IMyComponentProps {
+    toasterHandler: Function;
+    galleryHandler: Function;
+    modalHandler: Function;
+    modal: any;
+}
 
-    constructor(props) {
+interface IMyComponentState {
+    image: any;
+    routes: any;
+}
+
+class Uploader extends Component<IMyComponentProps, IMyComponentState> {
+
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -22,7 +34,7 @@ class Uploader extends Component {
         this.submit = this.submit.bind(this);
     }
 
-    handleInputChange(event) {
+    handleInputChange(event: any) {
         const value = event.target.value;
 
         this.setState(() => ({
@@ -34,23 +46,25 @@ class Uploader extends Component {
     }
 
     getRoutes = () => {
-        var routes = [];
-        var baseUrl = "http://localhost:8080";
+        var routes: any = [];
+        var baseUrl: any = "http://localhost:8080";
         routes.uploadImageUrl = baseUrl + "/uploadImage";
         return routes;
     }
 
     triggerUpload = () => {
-        document.getElementById('image').click();
+        //document.getElementById('image').click();
     }
 
-    handleImage = (e) => {
+    handleImage = (e: any) => {
         // mock call
 
-        this.imagePreview(e.target.files[0]);
+
+        let image: any = {... this.state.image};
+        image.title = e.target.files[0]
 
         this.setState({
-            title: e.target.files[0].name
+            image: image
         })
 
         //reset input
@@ -74,7 +88,7 @@ class Uploader extends Component {
         this.props.toasterHandler(true, false, "Something went wrong.");
     }
 
-    imagePreview = (image) => {
+    imagePreview = (image: any) => {
         let reader = new FileReader();
         reader.readAsDataURL(image);
 
@@ -103,7 +117,7 @@ class Uploader extends Component {
                     <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
                 </div>
                 <div>
-                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} maxLength="255" id="name" name="name" placeholder="Image Title" className="auth-input" />
+                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} id="name" name="name" placeholder="Image Title" className="auth-input" />
                 </div>
                 <div className="auth-form-button-group">
                     <button onClick={this.submit} className="btn btn-primary auth-submit"> Upload </button>

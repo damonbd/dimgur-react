@@ -5,9 +5,19 @@ import Download from '../Download/Download';
 
 import './Carousel.css'
 
-class Carousel extends Component {
+interface IMyComponentProps {
+    index: any;
+    images: any;
+}
 
-    constructor(props) {
+interface IMyComponentState {
+    images: any;
+    currentImage: any;
+}
+
+class Carousel extends Component<IMyComponentProps, IMyComponentState> {
+
+    constructor(props: any) {
         super(props);
         this.state = {
             images: props.images,
@@ -25,7 +35,7 @@ class Carousel extends Component {
         window.removeEventListener('keypress', this.carouselNav);
     }
 
-    carouselNav(e) {
+    carouselNav(e: any) {
         if (e.keyCode === 37) {
             this.updateCurrentImage(this.state.currentImage.index - 1);
         }
@@ -34,7 +44,7 @@ class Carousel extends Component {
         }
     }
 
-    updateCurrentImage(index) {
+    updateCurrentImage(index: number) {
         if (index < 0) {
             index = this.state.images.length - 1;
         }
