@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 
 import '../Authentication.css'
 
-interface IMyComponentProps {
+interface ISignOutProps {
     toasterHandler: Function;
     signOutHandler: Function;
 }
 
-interface IMyComponentState {
-}
-
-class SignIn extends Component<IMyComponentProps, IMyComponentState> {
+class SignOut extends Component<ISignOutProps> {
     signOutClick = () => {
         // imaginary ajax call
         let isValid = true;
@@ -37,4 +34,4 @@ class SignIn extends Component<IMyComponentProps, IMyComponentState> {
     }
 }
 
-export default SignIn;
+export default SignOut;
