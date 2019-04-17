@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import '../Authentication.css'
 
 interface ISignOutProps {
-    toasterHandler: Function;
     signOutHandler: Function;
+    toasterHandler: Function;
 }
 
 class SignOut extends Component<ISignOutProps> {

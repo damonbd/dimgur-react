@@ -1,15 +1,15 @@
 import React, { Component, ComponentState } from 'react';
 
-import IModal from '../../../interfaces/IModal'
+import IModal from '../../../interfaces/IModal';
 
 import '../Authentication.css'
 
 interface ISignInProps {
     modal: IModal;
 
+    modalHandler: Function;
     signInHandler: Function;
     toasterHandler: Function;
-    modalHandler: Function;
 }
 
 interface ISignInState {

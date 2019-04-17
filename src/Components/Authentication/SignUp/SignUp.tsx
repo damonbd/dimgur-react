@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, ComponentState } from 'react';
+
+import IModal from '../../../interfaces/IModal';
 
 import '../Authentication.css'
 
-interface IMyComponentProps {
+interface ISignUpProps {
+    modal: IModal;
+
+    modalHandler: Function;
     signUpHandler: Function;
     toasterHandler: Function;
-    modalHandler: Function;
-    modal: any;
 }
 
-interface IMyComponentState {
+interface ISignUpState {
     username: string;
     email: string;
     password: string;
@@ -20,8 +23,8 @@ interface IMyComponentState {
     passwordConfirmError: string;
 }
 
-class SignUp extends Component<IMyComponentProps, IMyComponentState> {
-    constructor(props: any) {
+class SignUp extends Component<ISignUpProps, ISignUpState> {
+    constructor(props: ISignUpProps) {
         super(props);
         this.state = {
             username: "",
@@ -46,20 +49,16 @@ class SignUp extends Component<IMyComponentProps, IMyComponentState> {
         window.removeEventListener('keypress', this.keyboardPress);
     }
 
-    keyboardPress(e: any) {
+    keyboardPress(e: KeyboardEvent) {
         if (e.keyCode === 13) {
             this.signUpClick();
         }
     }
 
     handleInputChange(e: any) {
-        const target: any = e.target;
-        const name: any = target.name;
-        const value: any = target.value;
-
-        // this.setState({
-        //     [name]: value
-        // })
+        this.setState({
+            [e.target.name]: e.target.value
+        } as ComponentState)
     }
 
     signUpClick = () => {
