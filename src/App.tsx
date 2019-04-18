@@ -49,7 +49,7 @@ class App extends Component<IAppProps, IAppState> {
       isLoaded: false,
       toaster: { isVisible: false, isSuccess: false, body: "" },
       uploader: {
-        newImage: "",
+        newImage: undefined,
       },
       user: {
         username: ""
@@ -166,7 +166,6 @@ class App extends Component<IAppProps, IAppState> {
 
   galleryHandler(newImage: any) {
     // mock username here, would be returned from server with username already
-    newImage.username = this.state.user.username;
 
     this.setState({
       uploader: {
@@ -275,7 +274,7 @@ class App extends Component<IAppProps, IAppState> {
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} />
+          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} username={this.state.user.username} />
         </Modal>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>

@@ -10,7 +10,7 @@ import './Gallery.css'
 interface IGalleryProps {
     images: IImage[];
     modal: IModal;
-    newImage: string;
+    newImage?: IImage;
     username: string;
 
     carouselHandler: Function;
@@ -18,7 +18,7 @@ interface IGalleryProps {
 }
 
 interface IGalleryState {
-    newImage: string;
+    newImage?: IImage;
     images: IImage[];
 }
 
@@ -27,7 +27,7 @@ class Gallery extends Component<IGalleryProps, IGalleryState> {
         super(props);
 
         this.state = {
-            newImage: "",
+            newImage: undefined,
             images: props.images
         }
     }

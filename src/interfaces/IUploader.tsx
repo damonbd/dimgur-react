@@ -1,3 +1,5 @@
+import IImage from '../interfaces/IImage';
+
 export default interface IUploader {
-    newImage: string
+    newImage?: IImage
 }

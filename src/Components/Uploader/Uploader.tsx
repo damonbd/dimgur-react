@@ -10,6 +10,7 @@ import stockImage from '../../images/uploader.png';
 
 interface IUploaderProps {
     modal: IModal;
+    username: string;
 
     galleryHandler: Function;
     modalHandler: Function;
@@ -34,7 +35,7 @@ class Uploader extends Component<IUploaderProps, IUploaderState> {
                 title: "",
                 type: "",
                 url: stockImage,
-                username: "",
+                username: props.username != "" ? props.username : "Anonymous",
             },
             routes: this.getRoutes()
         }
@@ -97,11 +98,17 @@ class Uploader extends Component<IUploaderProps, IUploaderState> {
         let reader = new FileReader();
         reader.readAsDataURL(image);
 
+        let updatedImage = { ...this.state.image };
+        updatedImage.lastModified = image.lastModified;
+        updatedImage.lastModifiedDate = image.lastModifiedDate;
+        updatedImage.title = image.name;
+        updatedImage.size = image.size;
+        updatedImage.type = image.type;
+
         reader.onloadend = (e) => {
-            image.url = reader.result;
-            image.title = image.name;
+            updatedImage.url = reader.result;
             this.setState({
-                image: image,
+                image: updatedImage,
             });
         }
     }
