@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 
 import './Modal.css'
 
-interface IMyComponentProps {
+import IModal from '../../interfaces/IModal';
+
+interface IModalProps {
+    modal: IModal;
+
     visibilityHandler: Function;
-    modal: any;
 }
 
-interface IMyComponentState {
-    modal: any;
+interface IModalState {
+    modal: IModal;
 }
 
-class Modal extends Component<IMyComponentProps, IMyComponentState> {
-    constructor(props: any) {
+class Modal extends Component<IModalProps, IModalState> {
+    constructor(props: IModalProps) {
         super(props);
         this.state = {
             modal: props.modal
