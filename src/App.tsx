@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import './App.css';
-import logo from './images/test-media/image1.png'
+import logo from './images/dimgur-logo.JPG';
 
 import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
