@@ -15,6 +15,7 @@ import Carousel from './Components/Carousel/Carousel';
 
 import IImage from './interfaces/IImage';
 import IToaster from './interfaces/IToaster';
+import IGallery from './interfaces/IGallery';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -33,7 +34,7 @@ interface IAppState {
   uploader: any;
   modal: any;
   user: any;
-  gallery: any;
+  gallery: IGallery;
   carousel: any;
   modals: any;
 }
@@ -105,7 +106,7 @@ class App extends Component<IAppProps, IAppState> {
     window.removeEventListener('scroll', this.updateGallery);
   }
 
-  initImages() {
+  initImages(): IImage[] {
     let images: IImage[] = [];
 
     let imagesToFormat = [image1, image2, image3, image4, image5, image6];
@@ -125,11 +126,14 @@ class App extends Component<IAppProps, IAppState> {
   // isnt updating gallery.images
   updateGallery() {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      let images = this.initImages();
+      let images: IImage[] = this.initImages();
 
-      // this.setState({
-      //   images: [...this.state.gallery.images, ...images]
-      // })
+      let gallery: IGallery = { ...this.state.gallery }
+      gallery.images = [...this.state.gallery.images, ...images];
+
+      this.setState({
+        gallery: gallery
+      })
     }
   }
 
