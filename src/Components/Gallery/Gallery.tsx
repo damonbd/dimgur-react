@@ -5,8 +5,6 @@ import ImageContainer from '../ImageContainer/ImageContainer';
 import IImage from '../../interfaces/IImage';
 import IModal from '../../interfaces/IModal';
 
-import ImageModel from '../../models/ImageModel';
-
 import './Gallery.css'
 
 interface IGalleryProps {
@@ -21,7 +19,7 @@ interface IGalleryProps {
 
 interface IGalleryState {
     newImage: string;
-    images: ImageModel[];
+    images: IImage[];
 }
 
 class Gallery extends Component<IGalleryProps, IGalleryState> {
@@ -53,7 +51,6 @@ class Gallery extends Component<IGalleryProps, IGalleryState> {
             // }
 
             let image = nextProps.newImage;
-            let images: ImageModel[] = [image, ...this.state.images];
 
             this.setState({
                 newImage: image,
