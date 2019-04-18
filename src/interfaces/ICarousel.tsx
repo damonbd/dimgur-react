@@ -1,3 +1,3 @@
-export default interface IModal {
+export default interface ICarousel {
     index: number
 }

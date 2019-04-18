@@ -18,6 +18,8 @@ import IGallery from './interfaces/IGallery';
 import IImage from './interfaces/IImage';
 import IModal from './interfaces/IModal';
 import IToaster from './interfaces/IToaster';
+import IUser from './interfaces/IUser';
+
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -33,7 +35,7 @@ interface IAppState {
   isLoaded: boolean;
   toaster: IToaster;
   uploader: any;
-  user: any;
+  user: IUser;
   gallery: IGallery;
   carousel: ICarousel;
   modals: { [key: string]: any, uploader: IModal, signUp: IModal, signIn: IModal, carousel: IModal };
