@@ -29,11 +29,11 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
     }
 
     componentDidMount() {
-        window.addEventListener('keypress', this.carouselNav);
+        window.addEventListener('keyup', this.carouselNav);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('keypress', this.carouselNav);
+        window.removeEventListener('keyup', this.carouselNav);
     }
 
     carouselNav(e: any) {

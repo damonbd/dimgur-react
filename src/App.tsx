@@ -49,7 +49,7 @@ class App extends Component<IAppProps, IAppState> {
         body: " "
       },
       uploader: {
-        newImage: " ",
+        newImage: "",
       },
       modal: {
         isOpen: false
