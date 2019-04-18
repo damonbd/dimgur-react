@@ -15,7 +15,6 @@ import Carousel from './Components/Carousel/Carousel';
 
 import IImage from './interfaces/IImage';
 import IToaster from './interfaces/IToaster';
-import ToasterModel from './models/ToasterModel';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -30,7 +29,7 @@ interface IAppProps {
 
 interface IAppState {
   isLoaded: boolean;
-  toaster: ToasterModel;
+  toaster: IToaster;
   uploader: any;
   modal: any;
   user: any;
@@ -45,7 +44,7 @@ class App extends Component<IAppProps, IAppState> {
     super(props);
     this.state = {
       isLoaded: false,
-      toaster: new ToasterModel({ isVisible: false, isSuccess: false, body: "" }),
+      toaster: { isVisible: false, isSuccess: false, body: "" },
       uploader: {
         newImage: "",
       },
@@ -146,19 +145,19 @@ class App extends Component<IAppProps, IAppState> {
 
   toasterHandler(isVisible: boolean, isSuccess: boolean, body: string) {
     this.setState({
-      toaster: new ToasterModel({ isVisible, isSuccess, body })
+      toaster: { isVisible, isSuccess, body }
     });
 
     setTimeout(() => {
       this.setState({
-        toaster: new ToasterModel({ isVisible: false, isSuccess, body })
+        toaster: { isVisible: false, isSuccess, body }
       })
     }, 3000)
   };
 
   hideToaster() {
     this.setState({
-      toaster: new ToasterModel({ isVisible: false, isSuccess: false, body: "" })
+      toaster: { isVisible: false, isSuccess: false, body: "" }
     });
   }
 
@@ -229,9 +228,9 @@ class App extends Component<IAppProps, IAppState> {
     let toaster = null;
     let authButtons = null;
 
-    if (this.state.toaster.state.isVisible) {
+    if (this.state.toaster.isVisible) {
       toaster = (
-        <Toaster isSuccess={this.state.toaster.state.isSuccess} body={this.state.toaster.state.body} hide={this.hideToaster} />
+        <Toaster isSuccess={this.state.toaster.isSuccess} body={this.state.toaster.body} hide={this.hideToaster} />
       )
     }
 
