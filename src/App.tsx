@@ -13,9 +13,11 @@ import SignIn from './Components/Authentication/SignIn/SignIn';
 import SignOut from './Components/Authentication/SignOut/SignOut';
 import Carousel from './Components/Carousel/Carousel';
 
-import IImage from './interfaces/IImage';
-import IToaster from './interfaces/IToaster';
+import ICarousel from './interfaces/ICarousel';
 import IGallery from './interfaces/IGallery';
+import IImage from './interfaces/IImage';
+import IModal from './interfaces/IModal';
+import IToaster from './interfaces/IToaster';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -25,18 +27,16 @@ import image4 from './images/test-media/image4.jpeg';
 import image5 from './images/test-media/image5.jpg';
 import image6 from './images/test-media/image6.jpg';
 
-interface IAppProps {
-}
+interface IAppProps { }
 
 interface IAppState {
   isLoaded: boolean;
   toaster: IToaster;
   uploader: any;
-  modal: any;
   user: any;
   gallery: IGallery;
-  carousel: any;
-  modals: any;
+  carousel: ICarousel;
+  modals: { [key: string]: any, uploader: IModal, signUp: IModal, signIn: IModal, carousel: IModal };
 }
 
 class App extends Component<IAppProps, IAppState> {
@@ -48,9 +48,6 @@ class App extends Component<IAppProps, IAppState> {
       toaster: { isVisible: false, isSuccess: false, body: "" },
       uploader: {
         newImage: "",
-      },
-      modal: {
-        isOpen: false
       },
       user: {
         username: ""
