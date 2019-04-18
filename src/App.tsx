@@ -18,8 +18,8 @@ import IGallery from './interfaces/IGallery';
 import IImage from './interfaces/IImage';
 import IModal from './interfaces/IModal';
 import IToaster from './interfaces/IToaster';
+import IUploader from './interfaces/IUploader';
 import IUser from './interfaces/IUser';
-
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -34,7 +34,7 @@ interface IAppProps { }
 interface IAppState {
   isLoaded: boolean;
   toaster: IToaster;
-  uploader: any;
+  uploader: IUploader;
   user: IUser;
   gallery: IGallery;
   carousel: ICarousel;
