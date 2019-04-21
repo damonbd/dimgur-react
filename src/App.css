@@ -54,3 +54,21 @@
 .app-btn-sign-up {
   margin-left: 10px;
 }
+
+.slide-from-top-enter {
+  top: -100px;  
+}
+
+.slide-from-top-enter.slide-from-top-enter-active {
+  top: 20px;
+  transition: all 400ms ease-in;
+}
+
+.slide-from-top-leave {
+  top: 20px;
+}
+
+.slide-from-top-leave.slide-from-top-leave-active {
+  top: -100px;
+  transition: all 400ms ease-in;
+}

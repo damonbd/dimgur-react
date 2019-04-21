@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import './App.css';
-import logo from './images/dimgur-logo.JPG';
-
+import Carousel from './Components/Carousel/Carousel';
 import Gallery from './Components/Gallery/Gallery';
 import Modal from './Components/Modal/Modal';
-import Toaster from './Components/Toaster/Toaster';
-import Uploader from './Components/Uploader/Uploader';
-import SignUp from './Components/Authentication/SignUp/SignUp';
 import SignIn from './Components/Authentication/SignIn/SignIn';
 import SignOut from './Components/Authentication/SignOut/SignOut';
-import Carousel from './Components/Carousel/Carousel';
+import SignUp from './Components/Authentication/SignUp/SignUp';
+import Toaster from './Components/Toaster/Toaster';
+import Uploader from './Components/Uploader/Uploader';
 
 import ICarousel from './interfaces/ICarousel';
 import IGallery from './interfaces/IGallery';
@@ -20,6 +18,9 @@ import IModal from './interfaces/IModal';
 import IToaster from './interfaces/IToaster';
 import IUploader from './interfaces/IUploader';
 import IUser from './interfaces/IUser';
+
+import './App.css';
+import logo from './images/dimgur-logo.JPG';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -281,7 +282,10 @@ class App extends Component<IAppProps, IAppState> {
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </Modal>
 
-        {toaster}
+        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+          {toaster}
+        </ReactCSSTransitionGroup>
+
       </div>
     );
   }
