@@ -72,7 +72,7 @@ class SignIn extends Component<ISignInProps, ISignInState> {
         return (
             <div>
                 <div className="auth-form">
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" />
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" autoFocus />
                     <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="auth-input" />
                 </div>
                 <div className="auth-form-button-group">

@@ -129,7 +129,7 @@ class Uploader extends Component<IUploaderProps, IUploaderState> {
                     <input onChange={this.handleImage} type="file" id="image" className="uploader-hide" name="image" accept="image/*" />
                 </div>
                 <div>
-                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} id="name" name="name" placeholder="Image Title" className="auth-input" />
+                    <input type="text" value={this.state.image.title} onChange={this.handleInputChange} id="name" name="name" placeholder="Image Title" className="auth-input" autoFocus />
                 </div>
                 <div className="auth-form-button-group">
                     <button onClick={this.submit} className="btn btn-primary auth-submit"> Upload </button>

@@ -145,7 +145,7 @@ class SignUp extends Component<ISignUpProps, ISignUpState> {
             <div>
                 <div className="auth-form">
                     <p className="auth-error" >{this.state.usernameError}</p>
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" />
+                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" autoFocus />
                     <p className="auth-error" >{this.state.emailError}</p>
                     <input type="text" value={this.state.email} onChange={this.handleInputChange} id="email" name="email" placeholder="Email" className="auth-input" />
                     <p className="auth-error" >{this.state.passwordError}</p>
