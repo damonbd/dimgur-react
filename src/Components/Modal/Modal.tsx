@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Modal.css'
 
@@ -46,10 +47,10 @@ class Modal extends Component<IModalProps, IModalState> {
         if (isOpen !== true || isOpen !== false) {
             isOpen = false;
         }
-            var modal = { ...this.state.modal };
-            modal.isOpen = isOpen !== null ? isOpen : !modal.isOpen;
+        var modal = { ...this.state.modal };
+        modal.isOpen = isOpen !== null ? isOpen : !modal.isOpen;
 
-            this.props.visibilityHandler(modal);
+        this.props.visibilityHandler(modal);
     }
 
     componentWillReceiveProps(nextProps: any) {
@@ -81,9 +82,9 @@ class Modal extends Component<IModalProps, IModalState> {
         }
 
         return (
-            <div>
+            <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
                 {modal}
-            </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }
