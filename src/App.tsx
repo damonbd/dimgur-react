@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+var $ = require('jquery');
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Carousel from './Components/Carousel/Carousel';
@@ -138,13 +138,13 @@ class App extends Component<IAppProps, IAppState> {
   }
 
   stickyHeader() {
-    // if ($(this).scrollTop() > 175) {
-    //   // animate fixed div to small size:
-    //   $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
-    // } else {
-    //   //  animate fixed div to original size
-    //   $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
-    // }
+    if ($(this).scrollTop() > 175) {
+      // animate fixed div to small size:
+      $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
+    } else {
+      //  animate fixed div to original size
+      $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
+    }
   }
 
   toasterHandler(isVisible: boolean, isSuccess: boolean, body: string) {

@@ -57,6 +57,12 @@ class Gallery extends Component<IGalleryProps, IGalleryState> {
                 images: [image, ...this.state.images]
             });
         }
+
+        if (nextProps.images !== null) {
+            this.setState({
+                images: nextProps.images
+            });
+        }
     }
 
     render() {
