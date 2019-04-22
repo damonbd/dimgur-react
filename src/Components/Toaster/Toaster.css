@@ -14,23 +14,22 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 400px;
-    height: 100px;
-    border-radius: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px 0 black;
     z-index: 1001;
-    cursor: pointer;
 }
 
 .toaster-body {
-    height: 100%;
-
-    font-family:sans-serif;
+    display: inline-flex;
 }
 
 .toaster-text {
-  line-height: 14px;
-  height: 100px;
-  width: 400px;
-  display: table-cell;
-  vertical-align: middle;
+    padding: 12px 12px 12px 22px;
+}
+
+.toaster-close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }

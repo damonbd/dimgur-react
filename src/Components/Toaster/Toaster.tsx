@@ -18,9 +18,8 @@ const Toaster = (props: IToasterProps) => {
     return (
         <div onClick={() => props.hide()} className={backgroundColor}>
             <div className="toaster-body">
-                <p className="toaster-text">
-                    {props.body}
-                </p>
+                <span className="toaster-text"> {props.body} </span>
+                <span className="toaster-close">×</span>
             </div>
         </div>
     )
