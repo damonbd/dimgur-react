@@ -16,4 +16,19 @@
     right: 20px;
     width: 400px;
     height: 100px;
+    border-radius: 5px;
+}
+
+.toaster-body {
+    height: 100%;
+
+    font-family:sans-serif;
+}
+
+.toaster-text {
+  line-height: 14px;
+  height: 100px;
+  width: 400px;
+  display: table-cell;
+  vertical-align: middle;
 }
