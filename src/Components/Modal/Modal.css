@@ -23,9 +23,9 @@
     max-height: calc(100% - 10em);
     overflow-y: auto;
     position: fixed;
-    top: 30%;
+    top: 5em;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     z-index: 1100;
     transition: all .5s ease;
     border-radius:4px;
