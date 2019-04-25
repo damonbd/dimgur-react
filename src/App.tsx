@@ -161,6 +161,11 @@ class App extends Component<IAppProps, IAppState> {
   };
 
   galleryHandler(newImage: any) {
+    let images = [newImage, ...this.state.gallery.images];
+    images.forEach((image, index) => {
+      image.index = index;
+    });
+
     this.setState({
       gallery: {
         images: [newImage, ...this.state.gallery.images]
@@ -257,7 +262,9 @@ class App extends Component<IAppProps, IAppState> {
           {authButtons}
         </header>
 
-        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
+        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+          <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
+        </ReactCSSTransitionGroup>
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
           <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
