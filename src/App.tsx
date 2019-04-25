@@ -16,7 +16,6 @@ import IGallery from './interfaces/IGallery';
 import IImage from './interfaces/IImage';
 import IModal from './interfaces/IModal';
 import IToaster from './interfaces/IToaster';
-import IUploader from './interfaces/IUploader';
 import IUser from './interfaces/IUser';
 
 import './App.css';
@@ -35,7 +34,6 @@ interface IAppProps { }
 interface IAppState {
   isLoaded: boolean;
   toaster: IToaster;
-  uploader: IUploader;
   user: IUser;
   gallery: IGallery;
   carousel: ICarousel;
@@ -49,9 +47,6 @@ class App extends Component<IAppProps, IAppState> {
     this.state = {
       isLoaded: false,
       toaster: { isVisible: false, isSuccess: false, body: "" },
-      uploader: {
-        newImage: undefined,
-      },
       user: {
         username: ""
       },
@@ -128,14 +123,14 @@ class App extends Component<IAppProps, IAppState> {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       let images: IImage[] = this.initImages();
 
-      let gallery: IGallery = { ...this.state.gallery }
+      let gallery: IGallery = { ...this.state.gallery };
       gallery.images = [...this.state.gallery.images, ...images];
 
       this.setState({
         gallery: gallery
-      })
+      });
     }
-  }
+  };
 
   stickyHeader() {
     if ($(this).scrollTop() > 175) {
@@ -145,7 +140,7 @@ class App extends Component<IAppProps, IAppState> {
       //  animate fixed div to original size
       $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
     }
-  }
+  };
 
   toasterHandler(isVisible: boolean, isSuccess: boolean, body: string) {
     this.setState({
@@ -155,25 +150,23 @@ class App extends Component<IAppProps, IAppState> {
     setTimeout(() => {
       this.setState({
         toaster: { isVisible: false, isSuccess, body }
-      })
-    }, 3000)
+      });
+    }, 3000);
   };
 
   hideToaster() {
     this.setState({
       toaster: { isVisible: false, isSuccess: false, body: "" }
     });
-  }
+  };
 
   galleryHandler(newImage: any) {
-    // mock username here, would be returned from server with username already
-
     this.setState({
-      uploader: {
-        newImage: newImage
+      gallery: {
+        images: [newImage, ...this.state.gallery.images]
       }
-    })
-  }
+    });
+  };
 
   modalHandler(modal: any, isOpen: boolean) {
     var modals = { ...this.state.modals };
@@ -183,16 +176,16 @@ class App extends Component<IAppProps, IAppState> {
 
     this.setState({
       modals: modals
-    })
-  }
+    });
+  };
 
   carouselHandler(index: number) {
     this.setState({
       carousel: {
         index: index
       }
-    })
-  }
+    });
+  };
 
   signUpHandler(username: any) {
     if (username != null) {
@@ -200,9 +193,9 @@ class App extends Component<IAppProps, IAppState> {
         user: {
           username: username
         }
-      })
+      });
     }
-  }
+  };
 
   signInHandler(username: string) {
     if (username != null) {
@@ -210,22 +203,22 @@ class App extends Component<IAppProps, IAppState> {
         user: {
           username: username
         }
-      })
+      });
     }
-  }
+  };
 
   signOutHandler() {
     this.setState({
       user: {
         username: ""
       }
-    })
-  }
+    });
+  };
 
   openModal = (modal: any) => {
     modal = { ...modal };
     this.modalHandler(modal, true);
-  }
+  };
 
   render() {
     let toaster = null;
@@ -264,7 +257,7 @@ class App extends Component<IAppProps, IAppState> {
           {authButtons}
         </header>
 
-        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} newImage={this.state.uploader.newImage} username={this.state.user.username} />
+        <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
 
         <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
           <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
