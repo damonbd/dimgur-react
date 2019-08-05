@@ -261,6 +261,21 @@ class App extends Component<IAppProps, IAppState> {
 
           {authButtons}
         </header>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div style={{ backgroundColor: "red" }} >
+          <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
+        </div>
+
 
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
           <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />

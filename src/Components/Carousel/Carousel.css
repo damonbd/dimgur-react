@@ -1,5 +1,6 @@
 .carousel-carousel {
     width: 350px;
+    overflow: hidden;
 }
 
 .carousel-controls {

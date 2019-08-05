@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ImageContainer from '../ImageContainer/ImageContainer';
 import Download from '../Download/Download';
@@ -63,13 +64,16 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
     render() {
         return (
             <div className="carousel-carousel">
-                <ImageContainer cursor="default" image={this.state.currentImage} />
+                <ReactCSSTransitionGroup transitionName="background" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
+                    <ImageContainer cursor="default" image={this.state.currentImage} key={this.state.currentImage.index} />
+                </ReactCSSTransitionGroup>
                 <div className="carousel-controls">
                     <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success auth-submit"> {"<"} </button>
                     <Download image={this.state.currentImage} />
                     <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success auth-submit"> {">"} </button>
                 </div>
             </div>
+
         );
     }
 }
