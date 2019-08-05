@@ -56,7 +56,7 @@ class App extends Component<IAppProps, IAppState> {
         username: ""
       },
       gallery: {
-        images: this.initImages()
+        images: []
       },
       carousel: {
         index: 0
@@ -85,6 +85,8 @@ class App extends Component<IAppProps, IAppState> {
       }
     }
 
+    this.initImages();
+
     this.toasterHandler = this.toasterHandler.bind(this);
     this.galleryHandler = this.galleryHandler.bind(this);
     this.hideToaster = this.hideToaster.bind(this);
@@ -106,30 +108,67 @@ class App extends Component<IAppProps, IAppState> {
     window.removeEventListener('scroll', this.updateGallery);
   }
 
-  initImages(): IImage[] {
+  initImages() {
     let images: IImage[] = [];
 
-    let imagesToFormat = [image1, image2, image3, image4, image5, image6];
-    imagesToFormat.forEach((url, i) => {
-      let image: any = {};
-      image.url = url;
-      image.index = i;
-      images.push(image);
-    });
+    // get images from api or pretend to
+    const url = "http://localhost:8080/getImages";
+    fetch(url)
+      .then((response) => {
+        response.json()
+          .then(body => {
 
-    images[0].username = "Bobby";
-    images[0].username = "Robert";
+            body.forEach((item: IImage, i: number) => {
+              let image: any = {};
+              image.url = item.url;
+              image.index = i;
+              images.push(image);
+            })
+            //images.push(body) 
+            //console.log(body[0])
+          }
+          );
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 
-    return images;
+      this.setState({
+        gallery: {
+          images: images
+        }
+      });
+
+      //return;
+
+    // let imagesToFormat = [image1, image2, image3, image4, image5, image6];
+    // imagesToFormat.forEach((url, i) => {
+    //   let image: any = {};
+    //   image.url = url;
+    //   image.index = i;
+    //   images.push(image);
+    // });
+
+    // console.log(images);
+
+    // images[0].username = "Bobby";
+    // images[0].username = "Robert";
+
+    // setTimeout(() => {
+    //   console.log(images)
+    // }, 1000)
+
+    //return images;
   }
 
   // isnt updating gallery.images
   updateGallery() {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      let images: IImage[] = this.initImages();
+      //let images: IImage[] = this.initImages();
 
+      
       let gallery: IGallery = { ...this.state.gallery }
-      gallery.images = [...this.state.gallery.images, ...images];
+      //gallery.images = [...this.state.gallery.images, ...images];
 
       this.setState({
         gallery: gallery
