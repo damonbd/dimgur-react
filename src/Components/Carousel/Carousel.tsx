@@ -37,6 +37,16 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
         window.removeEventListener('keyup', this.carouselNav);
     }
 
+    componentWillReceiveProps(nextProps: any) {
+        if (nextProps != null) {
+            this.setState({ images: nextProps.images })
+        }
+
+        if (nextProps != null && this.state.currentImage == null) {
+            this.setState({ currentImage: nextProps.images[0] })
+        }
+    }
+
     carouselNav(e: any) {
         if (e.keyCode === 37) {
             this.updateCurrentImage(this.state.currentImage.index - 1);
@@ -62,18 +72,26 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
     }
 
     render() {
-        return (
-            <div className="carousel-carousel">
-                <ReactCSSTransitionGroup transitionName="background" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
-                    <ImageContainer cursor="default" image={this.state.currentImage} key={this.state.currentImage.index} />
-                </ReactCSSTransitionGroup>
-                <div className="carousel-controls">
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success auth-submit"> {"<"} </button>
-                    <Download image={this.state.currentImage} />
-                    <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success auth-submit"> {">"} </button>
-                </div>
-            </div>
 
+        let toRender = null;
+
+        if (this.state.images != null && this.state.images.length > 0 && this.state.currentImage != null) {
+            toRender = (
+                <div className="carousel-carousel">
+                    <ReactCSSTransitionGroup transitionName="background" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
+                        <ImageContainer cursor="default" image={this.state.currentImage} key={this.state.currentImage.index} />
+                    </ReactCSSTransitionGroup>
+                    <div className="carousel-controls">
+                        <button onClick={() => this.updateCurrentImage(this.state.currentImage.index - 1)} className="carousel-btn-left btn btn-success auth-submit"> {"<"} </button>
+                        <Download image={this.state.currentImage} />
+                        <button onClick={() => this.updateCurrentImage(this.state.currentImage.index + 1)} className="carousel-btn-right btn btn-success auth-submit"> {">"} </button>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            toRender
         );
     }
 }
