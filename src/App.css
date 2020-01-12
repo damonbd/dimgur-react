@@ -33,15 +33,14 @@
 }
 
 .header {
-  padding-top: 10px;
+  padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
   justify-content: space-between;
-  /* background: url("./images/header.svg") 100% 100% no-repeat; */
   /* image taken from stack overflow */
   background: url("./images/header.svg") 100% 100%;
-  height: 175px;
+  height: 85px;
   width: 100%;
   max-width: 1110px;
   position: fixed;
@@ -94,13 +93,16 @@
 .background-enter {
   transform: translate(100%);
 }
+
 .background-enter.background-enter-active {
   transform: translate(0%);
   transition: transform 1000ms ease-in-out;
 }
+
 .background-leave {
   transform: translate(-50%);
 }
+
 .background-leave.background-leave-active {
   transform: translate(-100%);
   transition: transform 1000ms ease-in-out;

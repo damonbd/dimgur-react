@@ -33,6 +33,7 @@ interface IAppProps { }
 
 interface IAppState {
   isLoaded: boolean;
+  isApiRunning: boolean;
   toaster: IToaster;
   user: IUser;
   gallery: IGallery;
@@ -41,11 +42,11 @@ interface IAppState {
 }
 
 class App extends Component<IAppProps, IAppState> {
-
   constructor(props: IAppProps) {
     super(props);
     this.state = {
       isLoaded: false,
+      isApiRunning: true,
       toaster: { isVisible: false, isSuccess: false, body: "" },
       user: {
         username: ""
@@ -76,11 +77,9 @@ class App extends Component<IAppProps, IAppState> {
           name: "carousel",
           title: "Carousel of Fun!",
           isOpen: false
-        }
+        },
       }
     }
-
-    this.initImages();
 
     this.toasterHandler = this.toasterHandler.bind(this);
     this.galleryHandler = this.galleryHandler.bind(this);
@@ -94,95 +93,77 @@ class App extends Component<IAppProps, IAppState> {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.stickyHeader);
     window.addEventListener('scroll', this.updateGallery);
+    this.fetchImages();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.stickyHeader);
     window.removeEventListener('scroll', this.updateGallery);
   }
 
-  initImages() {
+  fetchImages() {
     let images: IImage[] = [];
 
-    // get images from api or pretend to
-    const url = "http://localhost:8080/getImages";
-    fetch(url)
-      .then((response) => {
-        response.json()
-          .then(body => {
+    if (this.state.isApiRunning) {
+      // get images from api or pretend to
+      const url = "http://localhost:8080/getImages";
+      fetch(url)
+        .then((response) => {
+          response.json()
+            .then(body => {
+              body.forEach((item: IImage, i: number) => {
+                let image: any = {};
+                image.url = item.url;
+                image.index = i;
+                images.push(image);
+              });
+              this.setState({
+                gallery: {
+                  images: images
+                }
+              });
+            });
+        })
+        .catch((error) => {
+          console.log("api not running, init dummy images");
+          this.initDummyImages();
 
-            body.forEach((item: IImage, i: number) => {
-              let image: any = {};
-              image.url = item.url;
-              image.index = i;
-              images.push(image);
-            })
-            //images.push(body) 
-            //console.log(body[0])
-          }
-          );
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-      this.setState({
-        gallery: {
-          images: images
-        }
-      });
-
-      //return;
-
-    // let imagesToFormat = [image1, image2, image3, image4, image5, image6];
-    // imagesToFormat.forEach((url, i) => {
-    //   let image: any = {};
-    //   image.url = url;
-    //   image.index = i;
-    //   images.push(image);
-    // });
-
-    // console.log(images);
-
-    // images[0].username = "Bobby";
-    // images[0].username = "Robert";
-
-    // setTimeout(() => {
-    //   console.log(images)
-    // }, 1000)
-
-    //return images;
+          this.setState({
+            isApiRunning: false
+          });
+        });
+    }
+    else {
+      this.initDummyImages();
+    }
   }
 
-  // isnt updating gallery.images
+  initDummyImages() {
+    let images: IImage[] = [];
+
+    let imagesToFormat = [image1, image2, image3, image4, image5, image6, image1];
+    imagesToFormat.forEach((url, i) => {
+      let image: any = {};
+      image.url = url;
+      image.index = i;
+      images.push(image);
+    });
+
+    images[0].username = "Bobby";
+    images[0].username = "Robert";
+
+    let newGallery: IGallery = { ...this.state.gallery };
+    newGallery.images = [...this.state.gallery.images, ...images];
+
+    this.setState({
+      gallery: newGallery
+    });
+  }
+
+  // appends more images if user has scrolled to bottom of displayed images
   updateGallery() {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      //let images: IImage[] = this.initImages();
-
-<<<<<<< HEAD
-      
-      let gallery: IGallery = { ...this.state.gallery }
-      //gallery.images = [...this.state.gallery.images, ...images];
-=======
-      let gallery: IGallery = { ...this.state.gallery };
-      gallery.images = [...this.state.gallery.images, ...images];
->>>>>>> 20ebae12ee94c09bc892fae8dbbb2b6437a2aee2
-
-      this.setState({
-        gallery: gallery
-      });
-    }
-  };
-
-  stickyHeader() {
-    if ($(this).scrollTop() > 175) {
-      // animate fixed div to small size:
-      $('#header').stop().animate({ height: 85, 'padding-top': 20 }, 200);
-    } else {
-      //  animate fixed div to original size
-      $('#header').stop().animate({ height: 175, 'padding-top': 20 }, 200);
+      this.fetchImages();
     }
   };
 
@@ -305,21 +286,10 @@ class App extends Component<IAppProps, IAppState> {
 
           {authButtons}
         </header>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
 
         <div style={{ backgroundColor: "red" }} >
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </div>
-
 
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
           <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
