@@ -78,7 +78,7 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
         if (this.state.images != null && this.state.images.length > 0 && this.state.currentImage != null) {
             toRender = (
                 <div className="carousel-carousel">
-                    <ReactCSSTransitionGroup transitionName="background" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
+                    <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeave={false} >
                         <ImageContainer cursor="default" image={this.state.currentImage} key={this.state.currentImage.index} />
                     </ReactCSSTransitionGroup>
                     <div className="carousel-controls">
