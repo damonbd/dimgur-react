@@ -300,8 +300,12 @@ class App extends Component<IAppProps, IAppState> {
 
     return (
       <div className="App container">
-        <header id="header" className="header">
 
+        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
+          {loading}
+        </ReactCSSTransitionGroup>
+
+        <header id="header" className="header">
           <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
 
           <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
@@ -312,11 +316,6 @@ class App extends Component<IAppProps, IAppState> {
         <div style={{ backgroundColor: "red" }} >
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </div>
-
-
-        <ReactCSSTransitionGroup transitionName="fade" transitionLeaveTimeout={1000}>
-          {loading}
-        </ReactCSSTransitionGroup>
 
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
           <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
