@@ -1,0 +1,8 @@
+.loading-progress {
+    width: 100px;
+    height: 30px;
+}
+
+.loading-progress-bar {
+    width: 100%;
+}

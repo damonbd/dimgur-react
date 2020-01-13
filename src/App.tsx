@@ -10,6 +10,7 @@ import SignOut from './Components/Authentication/SignOut/SignOut';
 import SignUp from './Components/Authentication/SignUp/SignUp';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
+import Loading from './Components/Loading/Loading';
 
 import ICarousel from './interfaces/ICarousel';
 import IGallery from './interfaces/IGallery';
@@ -131,6 +132,13 @@ class App extends Component<IAppProps, IAppState> {
           this.setState({
             isApiRunning: false
           });
+
+          setTimeout(() => {
+            this.setState({
+              isLoaded: true
+            });
+          }, 1000);
+
         });
     }
     else {
@@ -158,6 +166,12 @@ class App extends Component<IAppProps, IAppState> {
     this.setState({
       gallery: newGallery
     });
+
+    setTimeout(() => {
+      this.setState({
+        isLoaded: true
+      });
+    }, 1000);
   }
 
   // appends more images if user has scrolled to bottom of displayed images
@@ -253,6 +267,8 @@ class App extends Component<IAppProps, IAppState> {
   render() {
     let toaster = null;
     let authButtons = null;
+    let loading = null;
+
 
     if (this.state.toaster.isVisible) {
       toaster = (
@@ -276,6 +292,12 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
+    if (!this.state.isLoaded) {
+      loading = (
+        <Loading></Loading>
+      )
+    }
+
     return (
       <div className="App container">
         <header id="header" className="header">
@@ -290,6 +312,11 @@ class App extends Component<IAppProps, IAppState> {
         <div style={{ backgroundColor: "red" }} >
           <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
         </div>
+
+
+        <ReactCSSTransitionGroup transitionName="fade" transitionLeaveTimeout={1000}>
+          {loading}
+        </ReactCSSTransitionGroup>
 
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
           <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
