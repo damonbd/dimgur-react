@@ -11,6 +11,7 @@ import SignUp from './Components/Authentication/SignUp/SignUp';
 import Toaster from './Components/Toaster/Toaster';
 import Uploader from './Components/Uploader/Uploader';
 import Loading from './Components/Loading/Loading';
+import Settings from './Components/Settings/Settings';
 
 import ICarousel from './interfaces/ICarousel';
 import IGallery from './interfaces/IGallery';
@@ -34,6 +35,7 @@ interface IAppProps { }
 
 interface IAppState {
   isLoaded: boolean;
+  routes: { showMainPage: boolean, showSettings: boolean };
   isApiRunning: boolean;
   toaster: IToaster;
   user: IUser;
@@ -47,6 +49,10 @@ class App extends Component<IAppProps, IAppState> {
     super(props);
     this.state = {
       isLoaded: false,
+      routes: {
+        showMainPage: true,
+        showSettings: false
+      },
       isApiRunning: true,
       toaster: { isVisible: false, isSuccess: false, body: "" },
       user: {
@@ -265,10 +271,10 @@ class App extends Component<IAppProps, IAppState> {
   };
 
   render() {
+    let toRender = null;
     let toaster = null;
     let authButtons = null;
     let loading = null;
-
 
     if (this.state.toaster.isVisible) {
       toaster = (
@@ -298,49 +304,63 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
+    if (this.state.routes.showMainPage) {
+      toRender = (
+        <div>
+          <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
+            {loading}
+          </ReactCSSTransitionGroup>
+
+          <header id="header" className="header">
+            <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
+
+            <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
+
+            {authButtons}
+          </header>
+
+          <div style={{ backgroundColor: "red" }} >
+            <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
+          </div>
+
+          <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+            <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
+          </ReactCSSTransitionGroup>
+
+          <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
+            <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
+          </Modal>
+
+          <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signUp}>
+            <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signUp} />
+          </Modal>
+
+          <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
+            <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} username={this.state.user.username} />
+          </Modal>
+
+          <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>
+            <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
+          </Modal>
+
+          <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+            {toaster}
+          </ReactCSSTransitionGroup>
+        </div>
+      )
+    }
+    else if (this.state.routes.showSettings) {
+      toRender = (
+        <div>
+          <Settings toasterHandler={this.toasterHandler} />
+        </div>
+      )
+    }
+
+
     return (
       <div className="App container">
-
-        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
-          {loading}
-        </ReactCSSTransitionGroup>
-
-        <header id="header" className="header">
-          <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
-
-          <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
-
-          {authButtons}
-        </header>
-
-        <div style={{ backgroundColor: "red" }} >
-          <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
-        </div>
-
-        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-          <Gallery carouselHandler={this.carouselHandler} modalHandler={this.modalHandler} modal={this.state.modals.carousel} images={this.state.gallery.images} username={this.state.user.username} />
-        </ReactCSSTransitionGroup>
-
-        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signIn}>
-          <SignIn signInHandler={this.signInHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signIn} />
-        </Modal>
-
-        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.signUp}>
-          <SignUp signUpHandler={this.signUpHandler} toasterHandler={this.toasterHandler} modalHandler={this.modalHandler} modal={this.state.modals.signUp} />
-        </Modal>
-
-        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.uploader}>
-          <Uploader toasterHandler={this.toasterHandler} galleryHandler={this.galleryHandler} modalHandler={this.modalHandler} modal={this.state.modals.uploader} username={this.state.user.username} />
-        </Modal>
-
-        <Modal visibilityHandler={this.modalHandler} modal={this.state.modals.carousel}>
-          <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
-        </Modal>
-
-        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-          {toaster}
-        </ReactCSSTransitionGroup>
-
+        {toRender}
       </div>
     );
   }
