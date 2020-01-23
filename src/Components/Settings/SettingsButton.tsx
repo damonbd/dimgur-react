@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './Settings.css'
 
-const SettingsButton = (props: IImageProps) => {
-    return <div>
-            <button onClick={() => console.log("") } className="btn btn-primary">Settings</button>
+interface ISettingsProps {
+    SettingsHandler: Function;
+}
 
+const SettingsButton = (props: ISettingsProps) => {
+    return <div>
+        <button onClick={() => props.SettingsHandler()} className="btn btn-primary">Settings</button>
     </div>
 }
 

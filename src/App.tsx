@@ -297,7 +297,7 @@ class App extends Component<IAppProps, IAppState> {
       authButtons = (
         <div className="btn-group">
           <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
-          <SettingsButton signOutHandler={this.settingsHandler} />
+          <SettingsButton SettingsHandler={this.settingsHandler} />
         </div>
       )
     }
