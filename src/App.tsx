@@ -263,6 +263,10 @@ class App extends Component<IAppProps, IAppState> {
     this.setState({
       user: {
         username: ""
+      },
+      routes: {
+        showMainPage: true,
+        showSettings: false
       }
     });
   };
@@ -283,6 +287,7 @@ class App extends Component<IAppProps, IAppState> {
 
   render() {
     let toRender = null;
+    let header = null;
     let toaster = null;
     let authButtons = null;
     let loading = null;
@@ -316,20 +321,26 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
+    header = (
+      <div>
+        <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
+          {loading}
+        </ReactCSSTransitionGroup>
+
+        <header id="header" className="header">
+          <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
+
+          <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
+
+          {authButtons}
+        </header>
+      </div>
+    )
+
     if (this.state.routes.showMainPage) {
       toRender = (
         <div>
-          <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
-            {loading}
-          </ReactCSSTransitionGroup>
-
-          <header id="header" className="header">
-            <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
-
-            <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
-
-            {authButtons}
-          </header>
+          {header}
 
           <div style={{ backgroundColor: "red" }} >
             <Carousel index={this.state.carousel.index} images={this.state.gallery.images} />
@@ -364,6 +375,8 @@ class App extends Component<IAppProps, IAppState> {
     else if (this.state.routes.showSettings) {
       toRender = (
         <div>
+          {header}
+
           <Settings toasterHandler={this.toasterHandler} />
         </div>
       )
