@@ -30,6 +30,7 @@ import image3 from './images/test-media/image3.jpg';
 import image4 from './images/test-media/image4.jpeg';
 import image5 from './images/test-media/image5.jpg';
 import image6 from './images/test-media/image6.jpg';
+import SettingsButton from './Components/Settings/SettingsButton';
 
 interface IAppProps { }
 
@@ -97,6 +98,7 @@ class App extends Component<IAppProps, IAppState> {
     this.signOutHandler = this.signOutHandler.bind(this);
     this.updateGallery = this.updateGallery.bind(this);
     this.carouselHandler = this.carouselHandler.bind(this);
+    this.settingsHandler = this.settingsHandler.bind(this);
   };
 
   componentDidMount() {
@@ -265,6 +267,15 @@ class App extends Component<IAppProps, IAppState> {
     });
   };
 
+  settingsHandler() {
+    this.setState({
+      routes: {
+        showMainPage: false,
+        showSettings: true
+      }
+    })
+  }
+
   openModal = (modal: any) => {
     modal = { ...modal };
     this.modalHandler(modal, true);
@@ -286,6 +297,7 @@ class App extends Component<IAppProps, IAppState> {
       authButtons = (
         <div className="btn-group">
           <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
+          <SettingsButton signOutHandler={this.settingsHandler} />
         </div>
       )
     }
