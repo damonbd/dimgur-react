@@ -274,8 +274,8 @@ class App extends Component<IAppProps, IAppState> {
   settingsHandler() {
     this.setState({
       routes: {
-        showMainPage: false,
-        showSettings: true
+        showMainPage: !this.state.routes.showMainPage,
+        showSettings: !this.state.routes.showSettings
       }
     })
   }
@@ -302,7 +302,7 @@ class App extends Component<IAppProps, IAppState> {
       authButtons = (
         <div className="btn-group">
           <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
-          <SettingsButton SettingsHandler={this.settingsHandler} />
+          <SettingsButton SettingsHandler={this.settingsHandler} showSettingsText={!this.state.routes.showSettings} />
         </div>
       )
     }
