@@ -71,13 +71,31 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
     render() {
         let toRender = null;
         toRender = (
-            <div>
-                <div className="settings-form">
-                    <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="settings-input" />
-                    <input type="text" value={this.state.email} onChange={this.handleInputChange} id="email" name="email" placeholder="Email" className="settings-input" />
-                    <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="settings-input" />
-                    <input type="updatePassword" value={this.state.updatePassword} onChange={this.handleInputChange} id="updatePassword" name="updatePassword" placeholder="Update Password" className="settings-input" />
-                    <input type="updatePasswordConfirmation" value={this.state.updatePasswordConfirmation} onChange={this.handleInputChange} id="updatePasswordConfirmation" name="updatePasswordConfirmation" placeholder="Update Password Confirmation" className="settings-input" />
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="settings-input" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <input type="text" value={this.state.email} onChange={this.handleInputChange} id="email" name="email" placeholder="Email" className="settings-input" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="settings-input" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <input type="updatePassword" value={this.state.updatePassword} onChange={this.handleInputChange} id="updatePassword" name="updatePassword" placeholder="Update Password" className="settings-input" />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <input type="updatePasswordConfirmation" value={this.state.updatePasswordConfirmation} onChange={this.handleInputChange} id="updatePasswordConfirmation" name="updatePasswordConfirmation" placeholder="Update Password Confirmation" className="settings-input" />
+                    </div>
                 </div>
                 <div className="settings-form-button-group">
                     <button onClick={this.signInClick} className="btn btn-primary auth-submit"> Submit </button>

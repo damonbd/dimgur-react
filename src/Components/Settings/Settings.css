@@ -1,0 +1,28 @@
+.settings-input {
+    width: 50%;
+    margin-bottom: 10px;
+    background-color: #191919;
+    color: #f2f2f2;
+    border: 1px solid transparent;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.settings-form {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.settings-submit {
+    float: right;
+}
+
+.settings-error {
+    color: red; 
+    text-align: left;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
