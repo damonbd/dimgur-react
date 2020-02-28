@@ -43,6 +43,7 @@ interface IAppState {
   gallery: IGallery;
   carousel: ICarousel;
   modals: { [key: string]: any, uploader: IModal, signUp: IModal, signIn: IModal, carousel: IModal };
+  isMobileView: boolean;
 }
 
 class App extends Component<IAppProps, IAppState> {
@@ -86,7 +87,8 @@ class App extends Component<IAppProps, IAppState> {
           title: "Carousel of Fun!",
           isOpen: false
         },
-      }
+      },
+      isMobileView: false
     }
 
     this.toasterHandler = this.toasterHandler.bind(this);
@@ -103,11 +105,14 @@ class App extends Component<IAppProps, IAppState> {
 
   componentDidMount() {
     window.addEventListener('scroll', this.updateGallery);
+    this.checkScreenSize();
+
     this.fetchImages();
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.updateGallery);
+    window.removeEventListener("checkScreenSize", this.checkScreenSize.bind(this));
   }
 
   fetchImages() {
@@ -285,12 +290,24 @@ class App extends Component<IAppProps, IAppState> {
     this.modalHandler(modal, true);
   };
 
+  // initial screen size
+  checkScreenSize() {
+    let current = (window.innerWidth <= 760);
+    if (current !== this.state.isMobileView) {
+      this.setState({
+        isMobileView: current
+      })
+    }
+  };
+
   render() {
     let toRender = null;
     let header = null;
     let toaster = null;
     let authButtons = null;
     let loading = null;
+    let siteLogo = null;
+    let appClass = "";
 
     if (this.state.toaster.isVisible) {
       toaster = (
@@ -321,19 +338,72 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
+    if (!this.state.isMobileView) {
+      siteLogo = (
+        <img style={{ height: "fit-content" }} className="" src={logo} alt="site logo" />
+      );
+      appClass = "App container";
+    }
+    else {
+      siteLogo = null;
+      appClass = "App"
+    }
+
     header = (
       <div>
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
           {loading}
         </ReactCSSTransitionGroup>
 
-        <header id="header" className="header">
+
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                {/* <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button> */}
+                <a onClick={() => this.openModal(this.state.modals.uploader)} className="nav-link" href="#">Upload</a>
+              </li>
+            </ul>
+          </div>
+          <div className="ml-auto order-0">
+            {siteLogo}
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                {/* <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button> */}
+                <a onClick={() => this.openModal(this.state.modals.signIn)} className="nav-link" href="#">Sign In</a>
+              </li>
+              <li className="nav-item">
+                {/* <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button> */}
+                <a onClick={() => this.openModal(this.state.modals.signUp)} className="nav-link" href="#">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Navbar</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse my-2" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              {authButtons}
+            </div>
+          </div>
+        </nav> */}
+
+        {/* <header id="header" className="header">
           <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button>
 
           <img style={{ height: "fit-content" }} src={logo} alt="site logo" />
 
           {authButtons}
-        </header>
+        </header> */}
       </div>
     )
 
@@ -384,7 +454,7 @@ class App extends Component<IAppProps, IAppState> {
 
 
     return (
-      <div className="App container">
+      <div className={appClass}>
         {toRender}
       </div>
     );
