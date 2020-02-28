@@ -1,4 +1,5 @@
 import React, { Component, ComponentState } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import IModal from '../../../interfaces/IModal';
 
@@ -107,7 +108,7 @@ class SignIn extends Component<ISignInProps, ISignInState> {
 
         if (!this.state.showPasswordResetForm) {
             toRender = (
-                <div>
+                <div key={this.state.showPasswordResetForm.toString()}>
                     <div className="auth-form">
                         <input type="text" value={this.state.username} onChange={this.handleInputChange} id="username" name="username" placeholder="Username" className="auth-input" autoFocus />
                         <input type="password" value={this.state.password} onChange={this.handleInputChange} id="password" name="password" placeholder="Password" className="auth-input" />
@@ -121,7 +122,7 @@ class SignIn extends Component<ISignInProps, ISignInState> {
         }
         else {
             toRender = (
-                <div>
+                <div key={this.state.showPasswordResetForm.toString()}>
                     <div className="auth-form">
                         <input type="text" value={this.state.email} onChange={this.handleInputChange} id="email" name="email" placeholder="Email" className="auth-input" autoFocus />
                     </div>
@@ -134,7 +135,9 @@ class SignIn extends Component<ISignInProps, ISignInState> {
         }
 
         return (
-            toRender
+            <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={400} transitionLeave={false}>
+                {toRender}
+            </ReactCSSTransitionGroup>
         );
     }
 }
