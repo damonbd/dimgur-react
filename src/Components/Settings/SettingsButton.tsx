@@ -16,9 +16,7 @@ const SettingsButton = (props: ISettingsProps) => {
         text = "Main Page"
     }
 
-    return <div>
-        <button onClick={() => props.SettingsHandler()} className="btn btn-primary"> {text} </button>
-    </div>
+    return <a onClick={() => props.SettingsHandler()} className="nav-link" href="#">{text}</a>
 }
 
 export default SettingsButton;

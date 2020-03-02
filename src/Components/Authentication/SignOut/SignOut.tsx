@@ -25,11 +25,7 @@ class SignOut extends Component<ISignOutProps> {
 
     render() {
         return (
-            <div>
-                <div className="auth-form-button-group">
-                    <button onClick={this.signOutClick} className="btn btn-success auth-submit"> Sign Out </button>
-                </div>
-            </div >
+                <a onClick={this.signOutClick} className="nav-link" href="#">Sign Out</a>
         );
     }
 }

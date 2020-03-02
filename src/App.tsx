@@ -21,7 +21,6 @@ import IToaster from './interfaces/IToaster';
 import IUser from './interfaces/IUser';
 
 import './App.css';
-import logo from './images/dimgur-logo.JPG';
 
 // dummy media
 import image1 from './images/test-media/image1.png';
@@ -306,7 +305,6 @@ class App extends Component<IAppProps, IAppState> {
     let toaster = null;
     let authButtons = null;
     let loading = null;
-    let siteLogo = null;
     let appClass = "";
 
     if (this.state.toaster.isVisible) {
@@ -317,18 +315,22 @@ class App extends Component<IAppProps, IAppState> {
 
     if (this.state.user.username !== "") {
       authButtons = (
-        <div className="btn-group">
+        <ul className="navbar-nav ml-auto">
           <SignOut signOutHandler={this.signOutHandler} toasterHandler={this.toasterHandler} />
           <SettingsButton SettingsHandler={this.settingsHandler} showSettingsText={!this.state.routes.showSettings} />
-        </div>
+        </ul>
       )
     }
     else {
       authButtons = (
-        <div className="">
-          <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button>
-          <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button>
-        </div>
+        <ul className="navbar-nav ml-auto">
+          <li onClick={() => this.openModal(this.state.modals.signIn)} className="nav-item">
+            <a className="nav-link" href="#">Sign In</a>
+          </li>
+          <li onClick={() => this.openModal(this.state.modals.signUp)} className="nav-item">
+            <a className="nav-link" href="#">Sign Up</a>
+          </li>
+        </ul>
       )
     }
 
@@ -366,16 +368,7 @@ class App extends Component<IAppProps, IAppState> {
             </button>
           </div>
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul className="navbar-nav ml-auto">
-              <li onClick={() => this.openModal(this.state.modals.signIn)} className="nav-item">
-                {/* <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button> */}
-                <a className="nav-link" href="#">Sign In</a>
-              </li>
-              <li onClick={() => this.openModal(this.state.modals.signUp)} className="nav-item">
-                {/* <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button> */}
-                <a className="nav-link" href="#">Sign Up</a>
-              </li>
-            </ul>
+            {authButtons}
           </div>
         </nav>
       </div>
