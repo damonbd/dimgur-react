@@ -338,6 +338,13 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
+    if (!this.state.isMobileView) {
+      appClass = "App container";
+    }
+    else {
+      appClass = "App"
+    }
+
     header = (
       <div>
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>

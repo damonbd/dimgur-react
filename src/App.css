@@ -92,5 +92,6 @@
 .navbar-dimgur {
   background-image: url('./images/dimgur-logo.JPG');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-x: center;
+  background-position-y: 7px;
 }
