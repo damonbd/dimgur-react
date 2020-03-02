@@ -33,6 +33,7 @@
     height: fit-content;
     width: 500px;
     padding-bottom:10px;
+    max-width: 100%
 }
 
 .modal .title {

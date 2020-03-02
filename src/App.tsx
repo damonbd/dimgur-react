@@ -359,9 +359,9 @@ class App extends Component<IAppProps, IAppState> {
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
+              <li onClick={() => this.openModal(this.state.modals.uploader)} className="nav-item">
                 {/* <button onClick={() => this.openModal(this.state.modals.uploader)} className="btn btn-primary app-btn">Upload</button> */}
-                <a onClick={() => this.openModal(this.state.modals.uploader)} className="nav-link" href="#">Upload</a>
+                <a className="nav-link" href="#">Upload</a>
               </li>
             </ul>
           </div>
@@ -373,13 +373,13 @@ class App extends Component<IAppProps, IAppState> {
           </div>
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              <li onClick={() => this.openModal(this.state.modals.signIn)} className="nav-item">
                 {/* <button onClick={() => this.openModal(this.state.modals.signIn)} className="btn btn-primary">Sign In</button> */}
-                <a onClick={() => this.openModal(this.state.modals.signIn)} className="nav-link" href="#">Sign In</a>
+                <a className="nav-link" href="#">Sign In</a>
               </li>
-              <li className="nav-item">
+              <li onClick={() => this.openModal(this.state.modals.signUp)} className="nav-item">
                 {/* <button onClick={() => this.openModal(this.state.modals.signUp)} className="btn btn-primary app-btn-sign-up">Sign Up</button> */}
-                <a onClick={() => this.openModal(this.state.modals.signUp)} className="nav-link" href="#">Sign Up</a>
+                <a className="nav-link" href="#">Sign Up</a>
               </li>
             </ul>
           </div>
