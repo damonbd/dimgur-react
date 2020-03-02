@@ -43,7 +43,6 @@
   height: 85px;
   width: 100%;
   max-width: 1110px;
-  position: fixed;
 }
 
 .app-btn {
@@ -88,4 +87,10 @@
 .fade-leave.fade-leave-active {
   opacity: 0.01;
   transition: all 400ms ease-in;
+}
+
+.navbar-dimgur {
+  background-image: url('./images/dimgur-logo.JPG');
+  background-repeat: no-repeat;
+  background-position: center;
 }

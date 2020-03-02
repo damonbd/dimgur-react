@@ -338,25 +338,13 @@ class App extends Component<IAppProps, IAppState> {
       )
     }
 
-    if (!this.state.isMobileView) {
-      siteLogo = (
-        <img style={{ height: "fit-content" }} className="" src={logo} alt="site logo" />
-      );
-      appClass = "App container";
-    }
-    else {
-      siteLogo = null;
-      appClass = "App"
-    }
-
     header = (
       <div>
         <ReactCSSTransitionGroup transitionName="slide-from-top" transitionLeaveTimeout={1000}>
           {loading}
         </ReactCSSTransitionGroup>
 
-
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav className="navbar-dimgur navbar navbar-expand-md navbar-dark bg-dark">
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
               <li onClick={() => this.openModal(this.state.modals.uploader)} className="nav-item">
@@ -366,7 +354,6 @@ class App extends Component<IAppProps, IAppState> {
             </ul>
           </div>
           <div className="ml-auto order-0">
-            {siteLogo}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
               <span className="navbar-toggler-icon"></span>
             </button>
