@@ -1,5 +1,5 @@
 .settings-input {
-    width: 50%;
+    width: 100%;
     margin-bottom: 10px;
     background-color: #191919;
     color: #f2f2f2;
@@ -11,13 +11,15 @@
 }
 
 .settings-form {
-    width: 100%;
+    width: 400px;
     display: inline-block;
     text-align: center;
 }
 
 .settings-submit {
+    margin-bottom: 16px;
     float: right;
+    margin-right: 15px;
 }
 
 .settings-error {
@@ -25,4 +27,8 @@
     text-align: left;
     font-size: 13px;
     margin-bottom: 0px;
+}
+
+.settings-label {
+    color: white;
 }
